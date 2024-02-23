@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-int ft_is_hexa(unsigned int num, char word)
+int ft_is_hexadecimal(unsigned int num, char word)
 {
     if (num >= 16)
     {
@@ -32,7 +32,7 @@ int ft_is_hexa(unsigned int num, char word)
     }
 }
 
-int ft_len_hexa(unsigned int num)
+int ft_len_hexadecimal(unsigned int num)
 {
     int len;
 
@@ -47,7 +47,7 @@ int ft_len_hexa(unsigned int num)
     return (len);
 }
 
-int ft_print_hexa(unsigned int num, char word)
+int ft_print_hexadecimal(unsigned int num, char word)
 {
     if (num == 0)
     {
@@ -56,4 +56,4 @@ int ft_print_hexa(unsigned int num, char word)
     else
         ft_is_hexa(num, word);
     return (ft_len_hexa(num));
-}               
+}

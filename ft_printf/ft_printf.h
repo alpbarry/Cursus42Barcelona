@@ -14,13 +14,14 @@
 # include <stdarg.h>
 # include <stdio.h>
 
-int ft_printf(const char *format, ...);
-int ft_print_carac(char c);
+int ft_printf(const char *f, ...);
+int ft_print_char(char c);
 int ft_print_str(char *str);
 int ft_print_nbr(int n);
-int ft_print_unsign(unsigned int n);
-int ft_print_hexa(unsigned int num, char word);
-int ft_len_hexa(unsigned int num);
-int ft_is_hexa(unsigned int num, char word);
+int ft_print_unsigned(unsigned int n);
+int ft_print_hexadecimal(unsigned int num, char word);
+int ft_len_hexadecimal(unsigned int num);
+int ft_is_hexadecimal(unsigned int num, char word);
+int ft_print_pointer(void *p);
 
 #endif
