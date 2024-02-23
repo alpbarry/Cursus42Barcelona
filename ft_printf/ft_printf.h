@@ -13,6 +13,7 @@
 # define FT_PRINTF_H
 # include <stdarg.h>
 # include <stdio.h>
+# include <unistd.h>
 
 int ft_printf(const char *f, ...);
 int ft_print_char(char c);
