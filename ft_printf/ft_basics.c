@@ -9,8 +9,6 @@
 /*   Updated: 2024/02/22 10:23:10 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <unistd.h>
-#include <stdio.h>
 #include "ft_printf.h"
 
 int ft_print_car(int c)
