@@ -9,10 +9,11 @@
 /*   Updated: 2024/02/22 10:23:10 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include <unistd.h>
 #include <stdio.h>
 #include "ft_printf.h"
 
-int ft_print_char(int c)
+int ft_print_car(int c)
 {
     write(1, &c, 1);
     return (1);
@@ -59,7 +60,7 @@ int ft_print_nbr(int n)
     return (len);
 }
 
-int ft_print_unsigned(unsigned int n)
+int ft_print_unsign(unsigned int n)
 {
     int len;
 
