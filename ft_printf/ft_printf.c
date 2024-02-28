@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:23:38 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/02/28 10:53:36 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/02/28 10:56:15 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -47,7 +47,7 @@ int ft_printf(const char *f, ...)
     va_end(args);
     return (len);
 }
-
+/*
 int main()
 {
     char *str = "Hello, World!";
@@ -64,4 +64,4 @@ int main()
     ft_printf("Pointer: %p\n", ptr);
 
     return (0);
-}
+}*/
