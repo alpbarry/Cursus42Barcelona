@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:23:06 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/02/28 09:21:42 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:19:37 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -23,7 +23,7 @@ int ft_print_str(char *str)
 
     len = 0;
     if (str == NULL)
-        return (ft_print_str("NULL"));
+        return (ft_print_str("(null)"));
     while (str[len])
     {
         len += ft_print_char(str[len]);
@@ -41,7 +41,7 @@ int ft_print_nbr(int n)
         len += ft_print_char('0');
         return (len);
     }
-    if (n == -2147483647 - 1)
+    if (n == -2147483648)
     {
         len += ft_print_str("-2147483648");
         return (len);
@@ -63,23 +63,18 @@ int ft_print_unsigned(unsigned int n)
     int len;
 
     len = 0;
-    if (n == 0)
+    if (!n)
     {
         len += ft_print_char('0');
         return (len);
     }
-    else
+    if (n / 10)
+        ft_print_unsigned(n / 10);
+    ft_print_char(n % 10 + '0');
+    while (n)
     {
-        if (n/10 != 0)
-        {
-            len += ft_print_unsigned(n/10);
-        }
-        ft_print_char(n%10 + '0');
-        while (n > 0)
-        {
-            n = n/10;
-            len++;
-        }
+        n /= 10;
+        len++;
     }
     return (len);
 }

@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 10:57:10 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/02/28 10:09:59 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/02/29 14:11:13 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
@@ -56,4 +56,4 @@ int ft_print_hexadecimal(unsigned int num, char word)
     else
         ft_is_hexadecimal(num, word);
     return (ft_len_hexadecimal(num));
-}
+
