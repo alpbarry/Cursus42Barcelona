@@ -6,12 +6,12 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 08:40:33 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/02/28 10:07:39 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/03/08 12:32:39 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "ft_printf.h"
 
-void	ft_is_pointer(unsigned long long ptr)
+int	ft_is_pointer(unsigned long long ptr)
 {
 	if (ptr >= 16)
 	{
@@ -21,10 +21,17 @@ void	ft_is_pointer(unsigned long long ptr)
 	else
 	{
 		if (ptr < 10)
-			ft_print_char(ptr + '0');
+		{
+			if (ft_print_char(ptr + '0') == -1)
+				return (-1);
+		}
 		else
-			ft_print_char(ptr - 10 + 'a');
+		{
+			if (ft_print_char(ptr - 10 + 'a') == -1)
+				return (-1);
+		}
 	}
+	return (0);
 }
 
 int	ft_len_pointer(unsigned long long ptr)
@@ -40,17 +47,28 @@ int	ft_len_pointer(unsigned long long ptr)
 	return (l);
 }
 
-int ft_print_pointer(unsigned long long ptr)
+int	ft_print_pointer(unsigned long long ptr)
 {
 	int	l;
+	int	r;
 
 	l = ft_print_str("0x");
+	if (l == -1)
+		return (-1);
 	if (ptr == 0)
-		l += ft_print_char('0');
+	{
+		r = ft_print_char('0');
+		if (r == -1)
+			return (-1);
+		l++;
+	}
 	else
 	{
 		ft_is_pointer(ptr);
-		l += ft_len_pointer(ptr);
+		r = ft_len_pointer(ptr);
+		if (r == -1)
+			return (-1);
+		l += r;
 	}
 	return (l);
 }
