@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:56:18 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/03/13 13:22:22 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:08:16 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,18 +72,30 @@ void	generate_line(char **line, t_list *stash)
 
 /* Free de stash. */
 
-void	free_stash(t_list *stash)
+void	free_stash(t_list **stash, char *buf, t_list *node)
 {
 	t_list	*current;
 	t_list	*next;
 
-	current = stash;
-	while (current)
+	if (stash && *stash)
 	{
-		free(current->content);
-		next = current->next;
-		free(current);
-		current = next;
+		current = *stash;
+		while (current)
+		{
+			next = current->next;
+			free(current->content);
+			free(current);
+			current = next;
+		}
+		*stash = NULL;
+	}
+	if (buf != NULL)
+		free(buf);
+	if (node != NULL)
+	{
+		free(node->content);
+		free(node);
+		node = NULL;
 	}
 }
 
