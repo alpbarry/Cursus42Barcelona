@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 			ft_putchar(argv[1][i]);
 			i++;
 		}
-		if (j != 0)
+		if (j == 0)
 			ft_putchar('\n');
 	}
 	else	
