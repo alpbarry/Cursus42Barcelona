@@ -158,7 +158,7 @@ int	clean_stash(t_list **stash, int j)
 	*stash = clean_node;
 	return (1);
 }
-/*
+
 int	main(int argc, char **argv)
 {
 	int		fd;
@@ -166,7 +166,7 @@ int	main(int argc, char **argv)
 
 	fd = open("text/1char.txt", O_RDONLY, 0777);
 	line = get_next_line(fd);
-	while (!line)
+	while (line)
 	{
 		printf("%s\n", line);
 		free(line);
@@ -175,4 +175,4 @@ int	main(int argc, char **argv)
 	free(line);
 	close(fd);
 	return (0);
-}*/
+}

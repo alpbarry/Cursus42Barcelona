@@ -32,7 +32,7 @@ int	found_newline(t_list *stash)
 	return (0);
 }
 
-/* Devuelve n puntero al ultimo nodo de nuestro stash */
+/* Devuelve un puntero al ultimo nodo de nuestro stash */
 
 t_list	*ft_lst_get_last(t_list *stash)
 {
