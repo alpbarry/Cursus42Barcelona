@@ -6,7 +6,7 @@
 #    By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/10 12:33:06 by alphbarr          #+#    #+#              #
-#    Updated: 2024/04/04 20:22:55 by alphbarr         ###   ########.fr        #
+#    Updated: 2024/04/04 22:18:03 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,9 +46,9 @@ $(NAME): $(OBJS) $(LIB)
 
 $(OBJDIR)%.o: $(SOURCES_DIRECTORY)%.c Makefile $(LIB)
 	@mkdir -p $(@D)
-	@echo "Compiling... $<..."
+	@echo "$(GREEN) Compiling... $<..."
 	@$(CC) $(CCFLAGS) -c $< -o $@
-	@echo "$@ created!"
+	@echo "$(RED) $@ created!"
 
 clean:
 	@echo "Remove *.o"
