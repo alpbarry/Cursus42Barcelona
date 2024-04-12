@@ -6,7 +6,7 @@
 #    By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/10 12:33:06 by alphbarr          #+#    #+#              #
-#    Updated: 2024/04/04 22:18:03 by alphbarr         ###   ########.fr        #
+#    Updated: 2024/04/12 21:24:53 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ AR = ar rcs
 RM = rm -rf
 
 CC = gcc
-CCFLAGS = -g -Wall -Wextra -Werror -I./includes
+CCFLAGS = -g -Wall -Wextra -Werror -I../includes
 
 SOURCES_DIRECTORY = ./sources/
 
@@ -27,8 +27,8 @@ OBJDIR = objects/
 OBJS_LIST = $(patsubst %.c, %.o, $(notdir $(SRC_LIST)))
 OBJS = $(addprefix $(OBJDIR), $(OBJS_LIST))
 
-LIB = ./includes/libft.h\
-	./includes/get_next_line.h
+LIB = ../includes/libft.h\
+	../includes/get_next_line.h
 
 # COLORS
 
