@@ -6,7 +6,7 @@
 #    By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 12:29:05 by alphbarr          #+#    #+#              #
-#    Updated: 2024/04/16 16:02:53 by alphbarr         ###   ########.fr        #
+#    Updated: 2024/04/17 17:47:21 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 RM = rm -rf
@@ -17,6 +17,8 @@ CCFLAGS = -g -Wall -Wextra -Werror -Imlx
 SOURCES_DIRECTORY = ./sources/
 
 NAME = fdf
+
+NPD = --no-print-directory
 
 SRC_LIST = $(wildcard $(SOURCES_DIRECTORY)*.c)
 
@@ -36,10 +38,10 @@ RESET = \033[0m
 
 .PHONY: all clean fclean re
 
-all: $(llibft) $(NAME)
-
-$(libft):
-	@make -C libft/
+all:
+	@make -C mlx/ $(NPD)
+	@make -C libft/ $(NPD)
+	@make $(NAME) $(NPD)
 
 $(NAME): $(OBJS) $(LIB)
 	@$(CC) $(OBJS) -Llibft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
@@ -52,11 +54,14 @@ $(OBJDIR)%.o: $(SOURCES_DIRECTORY)%.c Makefile $(LIB)
 	@echo "$(RED) $@ created!"
 
 clean:
+	@make clean -C libft/ $(NPD)
 	@echo "Remove *.o"
 	@${RM} -r $(OBJDIR)
 	@echo "Done !"
 
 fclean: clean
+	@make clean -C mlx/ $(NPD)
+	@make fclean -C libft $(NPD)
 	@echo "Remove $(NAME)"
 	@${RM} $(NAME)
 	@echo "Done !"
