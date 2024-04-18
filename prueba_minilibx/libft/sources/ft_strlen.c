@@ -6,12 +6,12 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 13:21:58 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/01/09 18:50:14 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/04/18 17:27:25 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+int	ft_strlen(const char *s)
 {
 	size_t	i;
 

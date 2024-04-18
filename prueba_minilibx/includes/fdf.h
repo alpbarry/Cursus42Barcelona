@@ -14,32 +14,25 @@
 
 # endif
 // STRUCTURES
-
-// 2D point Vector
-typedef struct s_2d_point
+// Vector
+typedef struct s_vector
 {
-    int x;
-    int y;
-}   t_2d_point;
+    float  x;
+    float  y;
+    float  z;
+}   t_vector;
 
-// 3D point Vector
-typedef struct s_3d_point
+t_vector	create_vector(float x, float y, float z);
+
+// Matrix
+typedef struct s_matrix
 {
-    double  x;
-    double  y;
-    double  z;
-    int     color;
-}   t_3d_point;
+    t_vector  vx;
+    t_vector  vy;
+    t_vector  vz;
+}   t_matrix;
 
-
-// 3D Matrix
-typedef struct s_3d_matrix
-{
-    t_3d_point  x;
-    t_3d_point  y;
-    t_3d_point  z;
-}   t_3d_matrix;
-
+t_matrix	create_matrix(t_vector vx, t_vector vy, t_vector vz);
 
 // Map
 typedef struct s_map_element
@@ -51,36 +44,10 @@ typedef struct s_map_element
     int     is_last;
 }   t_map_element;
 
-typedef struct s_map_border
-{
-    t_2d_point  min;
-    t_2d_point  max;
-}   t_map_border;
+// Color
+int	create_trgb(int p, int c, int mc);
+int	create_color(int p, int c, int mc);
 
-//Offset
-typedef struct s_offset
-{
-	int	x;
-	int	y;
-}	t_offset;
-
-//Line ploting
-typedef struct s_plot_line_tools
-{
-	int	dx;
-	int	dy;
-	int	xi;
-	int	yi;
-	int	d;
-}	t_plot_line_tools;
-
-//Color
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-	int	a;
-}   t_color;
+// Matrix
 
 #endif
