@@ -3,6 +3,7 @@
 
 # include "libft.h"
 # include "get_next_line.h"
+# include "ft_printf.h"
 # include <fcntl.h>
 # include <math.h>
 
@@ -12,75 +13,62 @@
 # ifndef ENDIANESS
 #  define ENDIANESS 0 //0: little, 1: big
 
+// Keycodes
+
+#  define KEY_ESC 53
+
 # endif
 // STRUCTURES
-
-// 2D point Vector
-typedef struct s_2d_point
+// Vector
+typedef struct s_vector
 {
-    int x;
-    int y;
-}   t_2d_point;
+    float  x;
+    float  y;
+    float  z;
+}   t_vector;
 
-// 3D point Vector
-typedef struct s_3d_point
+t_vector	create_vector(float x, float y, float z);
+
+// Matrix
+typedef struct s_matrix
 {
-    double  x;
-    double  y;
-    double  z;
-    int     color;
-}   t_3d_point;
+    t_vector  vx;
+    t_vector  vy;
+    t_vector  vz;
+}   t_matrix;
+
+t_matrix	create_matrix(t_vector vx, t_vector vy, t_vector vz);
 
 
-// 3D Matrix
-typedef struct s_3d_matrix
+// Color
+int	create_color(int c);
+
+// Line
+
+typedef struct s_line
 {
-    t_3d_point  x;
-    t_3d_point  y;
-    t_3d_point  z;
-}   t_3d_matrix;
+	t_vector  *start;
+	t_vector  *end;
+	int  color;
+}   t_line;
 
+t_line	*create_line(t_vector *start, t_vector *end, int color);
 
-// Map
-typedef struct s_map_element
+// Mlx
+
+typedef struct s_vars
 {
-    int     x;
-    int     y;
-    int     z;
-    int     color;
-    int     is_last;
-}   t_map_element;
+    void  *mlx;
+    void  *win;
+}  t_vars;
 
-typedef struct s_map_border
+typedef struct s_data
 {
-    t_2d_point  min;
-    t_2d_point  max;
-}   t_map_border;
-
-//Offset
-typedef struct s_offset
-{
-	int	x;
-	int	y;
-}	t_offset;
-
-//Line ploting
-typedef struct s_plot_line_tools
-{
-	int	dx;
-	int	dy;
-	int	xi;
-	int	yi;
-	int	d;
-}	t_plot_line_tools;
-
-//Color
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-	int	a;
-}   t_color;
+    void  *img;
+    char  *addr;
+    int  bits_per_pixel;
+    int  line_length;
+    int  endian;
+}   t_data;
 
 #endif
