@@ -13,6 +13,7 @@
 #  define ENDIANESS 0 //0: little, 1: big
 
 # endif
+
 // STRUCTURES
 
 // 2D point Vector
