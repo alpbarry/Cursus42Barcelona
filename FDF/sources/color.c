@@ -26,6 +26,44 @@ int	create_color(int c)
 	nc = t << 24 | r << 16 | g << 8 | b;
 		return (nc);
 }
+
+void	reset_colors(t_object *object, int *allow_flag, int stop)
+{
+	t_point	*point;
+	int		i;
+
+	point = object->points;
+	*allow_flag = 0;
+	i = 1;
+	while (point && i < stop)
+	{
+		point->color = 0x00ffFFff;
+		point = point->next;
+		i++;
+	}
+}
+
+void	set_color(t_object *object)
+{
+	t_point	*point;
+	int		allow_flag;
+	int		stop;
+
+	point = object->points;
+	allow_flag = 0;
+	stop = object->columns * object->rows;
+	while (point)
+	{
+		if (point->vector.z == 0)
+			point->color = 0x00ffFFff;
+		else if (point->vector.z > 0)
+			point->color = 0x00ff00ff;
+		else
+			point->color = 0x0000ffFF;
+		point = point->next;
+	}
+	reset_colors(object, &allow_flag, stop);
+}
 /*
 int main() {
     int nc = 0xFF0000; 
