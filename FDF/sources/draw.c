@@ -10,6 +10,7 @@
 /*                                                                            */
 /* ************************************************************************* */
 #include "../includes/fdf.h"
+#include <../mlx/mlx.h>
 
 t_line    *create_line(t_vector *start, t_vector *end, int color)
 {
@@ -45,6 +46,7 @@ void draw_line(t_line *line, t_vars *vars)
         x = line->start->x;
         y = line->start->y;
         x2 = line->end->x;
+        y2 = line->end->y;
     }
     mlx_pixel_put(vars->mlx, vars->win, x, y, line->color);
     while(x < x2)

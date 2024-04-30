@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:17:12 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/04/22 20:03:56 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/04/24 11:20:51 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../mlx/mlx.h"
@@ -97,23 +97,44 @@ int create_key(int keycode, t_vars *vars)
 	return (0);
 }
 
-void draw_lines(t_list *lines, t_vars *vars)
+float	get_scale(int rows, int columns)
 {
-    t_list *current = lines;
-    while (current != NULL)
-    {
-        draw_line((t_line *)current->content, vars);
-        current = current->next;
-    }
+	float	row_scale;
+	float	column_scale;
+
+	row_scale = HEIGTH * 0.8 / rows;
+	column_scale = LENGHT * 0.8 / columns;
+	if (row_scale < column_scale)
+		return (row_scale);
+	else
+		return (column_scale);
 }
 
-int	main(void)
-{
-	t_vars	vars;
+void draw_object(t_object *object, t_vars *vars) {
+    t_point *point = object->points;
+    while (point) {
+        mlx_pixel_put(vars->mlx, vars->win, point->vector.x, point->vector.y, 0xFFFFFF); // 0xFFFFFF es el color blanco
+        point = point->next;
+    }
+}  
 
+int	main(int ac, char **av)
+{
+	t_vars		vars;
+	t_object	object;
+
+	if (ac != 2)
+		return (0);
+	object = make_object(av[1]);
+	if(!object.points)
+		return (1);
+	object.only_points = 1;
+	object.scale = get_scale(object.rows, object.columns);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "fdf");
 	mlx_hook(vars.win, 2, 1L<<0, create_key, &vars);
 	mlx_hook(vars.win, 17, 0, destroy_active_window, &vars);
+    draw_object(&object, &vars);
 	mlx_loop(vars.mlx);
+	free_points(&object.points);
 }
