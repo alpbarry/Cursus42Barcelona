@@ -44,7 +44,7 @@ void	fill_matrix(int *z_line, char *line)
 	}
 }
 
-void	read_file(fdf *data)
+void	read_file(char *filename, t_fdf *data)
 {
 	int	fd;
 	char	*line;

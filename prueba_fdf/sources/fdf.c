@@ -8,11 +8,11 @@ int deal_key(int key, void *data)
 
 int main(int ac, char **av)
 {
-    fdf *data;
+    t_fdf *data;
     int i;
     int j;
 
-    data = (fdf*)malloc(sizeof(fdf));
+    data = (t_fdf*)malloc(sizeof(t_fdf));
     read_file(av[1], data);
 
     i = 0;

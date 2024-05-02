@@ -8,13 +8,8 @@
 # include <math.h>
 
 // MACROS
-# define WIDTH 1024
-# define HEIGHT 1024
 # ifndef ENDIANESS
-#  define ENDIANESS 0 //0: little, 1: big
-
-# define LENGHT 1920
-# define HEIGTH 1080
+#  define ENDIANESS 0 //0: little, 1: big0
 
 // Keycodes
 
@@ -32,6 +27,11 @@ typedef struct s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_fdf;
+
+int	get_heigth(char *filename);
+int	get_width(char *filename);
+void	fill_matrix(int	z_line, char *line);
+void	read_file(char *filename, t_fdf *data);
 
 // POINT
 typedef struct s_point
@@ -89,5 +89,4 @@ typedef struct s_gen
 	int	z_min;
 }	t_gen;
 
->>>>>>> 65cc2111aec9795b2af2146a05625f76302a12b9
 #endif
