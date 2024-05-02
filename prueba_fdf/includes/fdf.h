@@ -27,6 +27,9 @@ typedef struct s_fdf
 	int	width;
 	int	height;
 	int	**z_matrix;
+	int	zoom;
+	int	shift_x;
+	int	shift_y;
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_fdf;
@@ -38,6 +41,8 @@ void	read_file(char *filename, t_fdf *data);
 int	deal_key(int key, void *data);
 int	ft_wordcount(char *s, char c);
 void	bresenham(float x, float y, float x1, float y1, t_fdf *data);
+void	draw(t_fdf *data);
+void	isometric(float *x, float *y, int z);
 
 // POINT
 typedef struct s_point

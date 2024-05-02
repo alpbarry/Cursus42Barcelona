@@ -1,8 +1,18 @@
 #include    "../includes/fdf.h"
 
-int deal_key(int key, void *data)
+int deal_key(int key, t_fdf *data)
 {
     ft_printf("key: %d\n", key);
+    if (key == 126)
+        data->shift_y -= 10;
+    if (key == 125)
+        data->shift_y += 10;
+    if (key == 123)
+        data->shift_x -= 10;
+    if (key == 124)
+        data->shift_x += 10;
+    mlx_clear_window(data->mlx_ptr, data->win_ptr);
+    draw(data);
     return (0);
 }
 /*
@@ -37,8 +47,9 @@ int main(int ac, char **av)
     read_file(av[1], data);
     data->mlx_ptr = mlx_init();
     data->win_ptr = mlx_new_window(data->mlx_ptr, 1920, 1080, "fdf");
-    bresenham(10, 10, 500, 200, data);
+    //bresenham(10, 10, 500, 200, data);
+    data->zoom = 30;
+    draw(data);
     mlx_key_hook(data->win_ptr, deal_key, NULL);
     mlx_loop(data->mlx_ptr);
-     
 }
