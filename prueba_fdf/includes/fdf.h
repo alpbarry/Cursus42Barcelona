@@ -31,8 +31,10 @@ typedef struct s_fdf
 
 int	get_heigth(char *filename);
 int	get_width(char *filename);
-void	fill_matrix(int	z_line, char *line);
+void	fill_matrix(int	*z_line, char *line);
 void	read_file(char *filename, t_fdf *data);
+int	deal_key(int key, void *data);
+int	ft_wordcount(char *s, char c);
 
 // POINT
 typedef struct s_point

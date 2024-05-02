@@ -1,5 +1,26 @@
 #include "../includes/fdf.h"
 
+int	ft_wordcount(char *s, char c)
+{
+	int	count;
+	int	i;
+
+	count = 0;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != c)
+		{
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
+		else
+			i++;
+	}
+	return (count);
+}
+
 int	get_height(char *filename)
 {
 	int		fd;
@@ -44,6 +65,7 @@ void	fill_matrix(int *z_line, char *line)
 		free(nums[i]);
 		i++;
 	}
+	free(nums);
 }
 
 void	read_file(char *filename, t_fdf *data)
