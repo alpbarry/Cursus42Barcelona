@@ -23,6 +23,16 @@
 # endif
 
 // STRUCTURES
+
+// FDF
+typedef struct s_fdf
+{
+	int	width;
+	int	height;
+	void	*mlx_ptr;
+	void	*win_ptr;
+}	t_fdf;
+
 // POINT
 typedef struct s_point
 {
