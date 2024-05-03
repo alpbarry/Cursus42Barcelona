@@ -35,8 +35,8 @@ void    bresenham(float x, float y, float x1, float y1, t_fdf *data)
     dx = x1 - x;
     dy = y1 - y;
     max = MAX1(mod(dx), mod(dy));
-    dx =/ MAX1(dx, dy);
-    dy =/ MAX1(dx, dy);
+    dx /= MAX1(dx, dy);
+    dy /= MAX1(dx, dy);
     while ((int)(x - x1) || (int)(y - y1))
     {
         mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xFFFFFF);

@@ -1,8 +1,12 @@
-#include    "../includes/fdf.h"
+#include "../mlx/mlx.h"
+#include "../includes/libft.h"
+#include "../ft_printf/ft_printf.h"
+#include "../includes/fdf.h"
+#include <math.h>
 
 int deal_key(int key, t_fdf *data)
 {
-    ft_printf("key: %d\n", key);
+    printf("key: %d\n", key);
     if (key == 126)
         data->shift_y -= 10;
     if (key == 125)
@@ -15,8 +19,8 @@ int deal_key(int key, t_fdf *data)
     draw(data);
     return (0);
 }
-/*
-int main(int ac, char **av)
+
+/*int main(int ac, char **av)
 {
     t_fdf *data;
     int i;
@@ -31,10 +35,10 @@ int main(int ac, char **av)
         j = 0;
         while (j < data->width)
         {
-            ft_printf("%d ", data->z_matrix[i][j]);
+            printf("%d ", data->z_matrix[i][j]);
             j++;
         }
-        ft_printf("\n");
+        printf("\n");
         i++;
     }
 }*/
@@ -43,6 +47,11 @@ int main(int ac, char **av)
 {
     t_fdf *data;
 
+    if (ac != 2)
+    {
+        ft_printf("Usage: ./fdf [map]\n");
+        return (0);
+    }
     data = (t_fdf*)malloc(sizeof(t_fdf));
     read_file(av[1], data);
     data->mlx_ptr = mlx_init();

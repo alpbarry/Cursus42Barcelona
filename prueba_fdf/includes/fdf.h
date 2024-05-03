@@ -1,6 +1,7 @@
 #ifndef FDF_H
 # define FDF_H
 
+#include "../mlx/mlx.h"
 # include "libft.h"
 # include "get_next_line.h"
 # include "ft_printf.h"
@@ -30,6 +31,7 @@ typedef struct s_fdf
 	int	zoom;
 	int	shift_x;
 	int	shift_y;
+	int	color;
 	void	*mlx_ptr;
 	void	*win_ptr;
 }	t_fdf;
@@ -38,7 +40,7 @@ int	get_heigth(char *filename);
 int	get_width(char *filename);
 void	fill_matrix(int	*z_line, char *line);
 void	read_file(char *filename, t_fdf *data);
-int	deal_key(int key, void *data);
+int	deal_key(int key, t_fdf *data);
 int	ft_wordcount(char *s, char c);
 void	bresenham(float x, float y, float x1, float y1, t_fdf *data);
 void	draw(t_fdf *data);

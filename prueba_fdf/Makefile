@@ -45,7 +45,7 @@ all:
 	@make $(NAME) $(NPD)
 #-Llibft -lft
 $(NAME): $(OBJS) $(LIB)
-	@$(CC) $(OBJS) $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(CC) $(OBJS) $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -o $(NAME)
 	@echo "Library $@ Done :)"
 
 $(OBJDIR)%.o: $(SOURCES_DIRECTORY)%.c Makefile $(LIB)
