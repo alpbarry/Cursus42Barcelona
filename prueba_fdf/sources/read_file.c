@@ -28,9 +28,11 @@ int	get_height(char *filename)
 	char	*line;
 	
 	fd = open(filename, O_RDONLY, 0);
+	if (fd == -1)
+		return (-1);
 	height = 0;
-	while ((line = get_next_line(fd)) != NULL)
-	{
+	while ((line = malloc(BUFFER_SIZE)) != NULL && get_next_line(fd) > 0)
+	{		
 		height++;
 		free(line);
 	}
@@ -44,9 +46,13 @@ int	get_width(char *filename)
 	int	fd;
 	char	*line;
 
-	line = NULL;
 	fd = open(filename, O_RDONLY, 0);
+	if (fd == -1)
+	   return (-1);
 	get_next_line(fd);
+	line = malloc(BUFFER_SIZE);
+	if (line == NULL)
+		return (-1);
 	width = ft_wordcount(line, ' ');
 	free(line);
 	close(fd);
@@ -63,10 +69,9 @@ void	fill_matrix(int *z_line, char *line)
 	while (nums[i])
 	{
 		z_line[i] = ft_atoi(nums[i]);
-		free(nums[i]);
 		i++;
 	}
-	free(nums);
+	free(line);
 }
 
 void	read_file(char *filename, t_fdf *data)
@@ -82,7 +87,7 @@ void	read_file(char *filename, t_fdf *data)
 	if (!data->z_matrix)
 	{
 		ft_printf("%s", "Error: Failed to allocate memory for z_matrix\n");
-		exit(EXIT_FAILURE);
+		exit(1);
 	}
 	i = 0;
 	while(i < data->height)
@@ -91,7 +96,7 @@ void	read_file(char *filename, t_fdf *data)
 		if (!data->z_matrix[i])
 		{
 			ft_printf("%s", "Error: Failed to allocate memory for z_matrix[%d]\n", i);
-			exit(EXIT_FAILURE);
+			exit(1);
 		}
 		i++;
 	}
