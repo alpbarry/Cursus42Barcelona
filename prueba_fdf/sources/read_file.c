@@ -31,7 +31,13 @@ int	get_height(char *filename)
 	if (fd == -1)
 		return (-1);
 	height = 0;
-	while ((line = malloc(BUFFER_SIZE)) != NULL && get_next_line(fd) > 0)
+	line = get_next_line(fd);
+    if (!line)
+    {
+        perror("Error allocating memory for line");
+        exit(1);
+    }
+	while (line != NULL && get_next_line(fd) > 0)
 	{		
 		height++;
 		free(line);
@@ -49,10 +55,12 @@ int	get_width(char *filename)
 	fd = open(filename, O_RDONLY, 0);
 	if (fd == -1)
 	   return (-1);
-	get_next_line(fd);
-	line = malloc(BUFFER_SIZE);
-	if (line == NULL)
-		return (-1);
+	line = get_next_line(fd);
+    if (!line)
+    {
+        perror("Error allocating memory for line");
+        exit(1);
+    }
 	width = ft_wordcount(line, ' ');
 	free(line);
 	close(fd);
@@ -66,6 +74,12 @@ void	fill_matrix(int *z_line, char *line)
 
 	nums = ft_split(line, ' ');
 	i = 0;
+	line = (char *)malloc(sizeof(char) * BUFFER_SIZE); // Asignar memoria a line
+    if (!line)
+    {
+        perror("Error allocating memory for line");
+        exit(1);
+    }
 	while (nums[i])
 	{
 		z_line[i] = ft_atoi(nums[i]);
@@ -107,10 +121,10 @@ void	read_file(char *filename, t_fdf *data)
 		perror("Error opening file");
 		exit(EXIT_FAILURE);
 	}
-	while ((line = get_next_line(fd)) != NULL)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
 		fill_matrix(data->z_matrix[i], line);
-		free(line);
 		i++;
 	}
 	close(fd);

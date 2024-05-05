@@ -114,24 +114,3 @@ int	get_points_in_row(char *line, t_object *object)
 	}
 	return (count);
 }
-
-void	get_points(t_text *text, t_object *object)
-{
-	t_text	*line;
-	int		counted_columns;
-
-	line = text;
-	if (!object->columns)
-		object->columns = -1;
-	while (line)
-	{
-		counted_columns = get_points_in_row(line->line, object);
-		if (!object->points)
-			return ;
-		if (counted_columns == 0 || counted_columns < object->columns)
-			return (free_points(&object->points));
-		object->columns = counted_columns;
-		object->rows += 1;
-		line = line->next;
-	}
-}
