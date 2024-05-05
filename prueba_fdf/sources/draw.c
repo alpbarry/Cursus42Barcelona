@@ -1,67 +1,67 @@
-#include "../includes/fdf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/30 22:11:34 by Nik               #+#    #+#             */
+/*   Updated: 2019/10/01 21:18:32 by vinograd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-float   mod(float i)
+#include "fdf.h"
+
+float	fmodule(float i)
 {
-    return (i < 0 ? -i : i);
+	return (i < 0) ? -i : i;
 }
 
-void    isometric(float *x, float *y, int z)
+void	line(t_dot a, t_dot b, t_dot *param)
 {
-    *x = (*x - *y) * cos(0.8);
-    *y = (*x + *y) * sin(0.8) - z;
+	float	step_x;
+	float	step_y;
+	float	max;
+	int		color;
+
+	set_param(&a, &b, param);
+	step_x = b.x - a.x;
+	step_y = b.y - a.y;
+	max = MAX(fmodule(step_x), fmodule(step_y));
+	step_x /= max;
+	step_y /= max;
+	color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
+	color = (b.z != a.z) ? 0xfc031c : color;
+	while ((int)(a.x - b.x) || (int)(a.y - b.y))
+	{
+		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
+		a.x += step_x;
+		a.y += step_y;
+		if (a.x > param->win_x || a.y > param->win_y || a.y < 0 || a.x < 0)
+			break ;
+	}
 }
 
-void    bresenham(float x, float y, float x1, float y1, t_fdf *data)
+void	draw(t_dot **matrix)
 {
-    float   dx;
-    float   dy;
-    int     max;
-    int     z;
-    int     z1;
-    
-    z = data->z_matrix[(int)y][(int)x];
-    z1 = data->z_matrix[(int)y1][(int)x1];
-    x *= data->zoom;
-    y *= data->zoom;
-    x1 *= data->zoom;
-    y1 *= data->zoom;
-    data->color = (z || z1) ? 0xFF0000 : 0xFFFFFF;
-    isometric(&x, &y, z);
-    isometric(&x1, &y1, z1);
-    x = data->shift_x;
-    y = data->shift_y;
-    x1 += data->shift_x;
-    y1 += data->shift_y;
-    dx = x1 - x;
-    dy = y1 - y;
-    max = MAX1(mod(dx), mod(dy));
-    dx /= MAX1(dx, dy);
-    dy /= MAX1(dx, dy);
-    while ((int)(x - x1) || (int)(y - y1))
-    {
-        mlx_pixel_put(data->mlx_ptr, data->win_ptr, x, y, 0xFFFFFF);
-        x += dx;
-        y += dy;
-    }
-}
+	int		y;
+	int		x;
 
-void    draw(t_fdf *data)
-{
-    int x;
-    int y;
-
-    y = 0;
-    while (y <= data->height)
-    {
-        x = 0;
-        while (x < data->width)
-        {
-            if (x < data->width - 1)
-                bresenham(x, y, x + 1, y, data);
-            bresenham(x, y, x + 1, y, data);
-            bresenham(x, y, x, y + 1, data);
-            x++;
-        }
-    }
-
+	print_menu(PRM);
+	y = 0;
+	while (matrix[y])
+	{
+		x = 0;
+		while (1)
+		{
+			if (matrix[y + 1])
+				line(matrix[y][x], matrix[y + 1][x], &PRM);
+			if (!matrix[y][x].is_last)
+				line(matrix[y][x], matrix[y][x + 1], &PRM);
+			if (matrix[y][x].is_last)
+				break ;
+			x++;
+		}
+		y++;
+	}
 }
