@@ -12,7 +12,7 @@
 
 #include "fdf.h"
 
-int		check_win_size(int key, t_dot **matrix)
+int		check_win_size(int key, t_fdf **matrix)
 {
 	if ((key == 0 && PRM.win_y <= 500) || (key == 6 && PRM.win_x <= 500))
 		return (1);
@@ -20,8 +20,8 @@ int		check_win_size(int key, t_dot **matrix)
 		return (1);
 	return (0);
 }
-
-void	full_screen(t_dot **matrix)
+	
+void	full_screen(t_fdf **matrix)
 {
 	static int old_x;
 	static int old_y;
@@ -51,7 +51,7 @@ void	change_window_size(int key, t_dot **matrix)
 		full_screen(matrix);
 }
 
-void	new_window(int key, t_dot **matrix)
+void	new_window(int key, t_fdf **matrix)
 {
 	change_window_size(key, matrix);
 	mlx_destroy_window(PRM.mlx_ptr, PRM.win_ptr);

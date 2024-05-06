@@ -10,39 +10,39 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
-float	fmodule(float i)
+float	module(float i)
 {
 	return (i < 0) ? -i : i;
 }
 
-void	line(t_dot a, t_dot b, t_dot *param)
+void	line(t_fdf a, t_fdf b, t_fdf *param)
 {
-	float	step_x;
-	float	step_y;
+	float	dx;
+	float	dy;
 	float	max;
 	int		color;
 
 	set_param(&a, &b, param);
-	step_x = b.x - a.x;
-	step_y = b.y - a.y;
-	max = MAX(fmodule(step_x), fmodule(step_y));
-	step_x /= max;
-	step_y /= max;
+	dx = b.x - a.x;
+	dy = b.y - a.y;
+	max = MAX(module(dx), module(dy));
+	dx /= max;
+	dy /= max;
 	color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
 	color = (b.z != a.z) ? 0xfc031c : color;
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
 		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
-		a.x += step_x;
-		a.y += step_y;
+		a.x += dx;
+		a.y += dy;
 		if (a.x > param->win_x || a.y > param->win_y || a.y < 0 || a.x < 0)
 			break ;
 	}
 }
 
-void	draw(t_dot **matrix)
+void	draw_matrix(t_fdf **matrix)
 {
 	int		y;
 	int		x;

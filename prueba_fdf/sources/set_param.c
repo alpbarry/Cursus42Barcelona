@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
-void	zoom(t_dot *a, t_dot *b, t_dot *param)
+void	zoom(t_fdf *a, t_fdf *b, t_fdf *param)
 {
 	a->x *= param->scale;
 	a->y *= param->scale;
@@ -22,7 +22,7 @@ void	zoom(t_dot *a, t_dot *b, t_dot *param)
 	b->z *= param->z_scale;
 }
 
-void	set_param(t_dot *a, t_dot *b, t_dot *param)
+void	set_param(t_fdf *a, t_fdf *b, t_fdf *param)
 {
 	zoom(a, b, param);
 	if (param->is_isometric)

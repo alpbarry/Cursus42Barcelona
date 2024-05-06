@@ -47,7 +47,7 @@ void	do_key(int key, t_dot **matrix)
 		PRM.angle -= 0.05;
 }
 
-int		deal_key(int key, t_dot **matrix)
+int		deal_key(int key, t_fdf **matrix)
 {
 	if (is_key(key))
 	{

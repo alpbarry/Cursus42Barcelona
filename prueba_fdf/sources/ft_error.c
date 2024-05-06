@@ -10,10 +10,10 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
-void	ft_error(char *msg)
+void	ft_error(char *error)
 {
-	ft_printf("%s\n", msg);
+	ft_printf("%s\n", error);
 	exit(1);
 }

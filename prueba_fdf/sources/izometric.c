@@ -15,10 +15,10 @@
 **	make the figure 3d (isometric stile)
 */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
-void	isometric(t_dot *dot, double angle)
+void	isometric(t_fdf *fdf, double angle)
 {
-	dot->x = (dot->x - dot->y) * cos(angle);
-	dot->y = (dot->x + dot->y) * sin(angle) - dot->z;
+	fdf->x = (fdf->x - fdf->y) * cos(angle);
+	fdf->y = (fdf->x + fdf->y) * sin(angle) - fdf->z;
 }

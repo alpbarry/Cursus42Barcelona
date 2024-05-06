@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
-void	print_menu(t_dot param)
+void	print_menu(t_fdf param)
 {
 	char *menu;
 
