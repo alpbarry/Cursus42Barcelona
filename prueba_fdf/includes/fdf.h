@@ -11,8 +11,7 @@
 // MACROS
 # ifndef ENDIANESS
 #  define ENDIANESS 0 //0: little, 1: big0
-#define MAX1(a, b) (a > b ? a : b)
-#define MOD(a) (a < 0 ? -a : a)
+
 
 // Keycodes
 
@@ -22,7 +21,6 @@
 
 // STRUCTURES
 
-# define PRM matrix[0][0]
 
 typedef struct	s_fdf
 {
@@ -44,11 +42,14 @@ typedef struct	s_fdf
 }				t_fdf;
 
 void	new_window(int key, t_fdf **matrix);
-int	deal_key(int key, t_fdf **matrix);
+int		deal_key(int key, t_fdf **matrix);
 void	draw_matrix(t_fdf **matrix);
 void	ft_error(char *error);
 void	isometric(t_fdf *fdf, double angle);
 void	print_menu(t_fdf param);
 t_fdf	**read_file(char *filename);
+void	set_param(t_fdf *a, t_fdf *b, t_fdf *param);
+int	MAX(int a, int b);
+int	MOD(int a);
 
 #endif

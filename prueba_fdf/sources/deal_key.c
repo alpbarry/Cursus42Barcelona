@@ -6,11 +6,11 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:55:04 by Nik               #+#    #+#             */
-/*   Updated: 2019/10/05 14:20:00 by Nik              ###   ########.fr       */
+/*   Updated: 2024/05/07 14:57:53 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 int		is_key(int key)
 {
@@ -21,7 +21,7 @@ int		is_key(int key)
 	key == 49 || key == 88 || key == 22);
 }
 
-void	do_key(int key, t_dot **matrix)
+void	do_key(int key, t_fdf **matrix)
 {
 	if (key == 24 || key == 69)
 		PRM.scale += 3;
@@ -54,7 +54,7 @@ int		deal_key(int key, t_fdf **matrix)
 		mlx_clear_window(PRM.mlx_ptr, PRM.win_ptr);
 		do_key(key, matrix);
 		print_menu(PRM);
-		draw(matrix);
+		draw_matrix(matrix);
 	}
 	if (key == 6 || key == 7 || key == 0 || key == 1 || key == 3)
 		new_window(key, matrix);

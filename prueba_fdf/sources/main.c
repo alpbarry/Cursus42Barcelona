@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:13:25 by vinograd          #+#    #+#             */
-/*   Updated: 2019/10/01 21:19:44 by vinograd         ###   ########.fr       */
+/*   Updated: 2024/05/07 16:18:54 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 		ft_error("error of ./fdf map.fdf");
-	matrix = read_file(*++av);
-	set_default(&PRM);
+	ft_printf("Antes de read file: \n");
+	matrix = read_file(av[1]);
+	ft_printf("Antes de set deafult: \n");
+	set_default(matrix[0]);
+	ft_printf("Antes de draw matrix: \n");
 	draw_matrix(matrix);
-	mlx_key_hook(PRM.win_ptr, deal_key, matrix);
-	mlx_loop(PRM.mlx_ptr);
+	mlx_key_hook((* matrix)->win_ptr, deal_key, matrix);
+	mlx_loop((* matrix)->mlx_ptr);
 }

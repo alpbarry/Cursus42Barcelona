@@ -6,11 +6,11 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 00:30:47 by Nik               #+#    #+#             */
-/*   Updated: 2019/10/02 00:43:47 by Nik              ###   ########.fr       */
+/*   Updated: 2024/05/07 14:57:17 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "../includes/fdf.h"
 
 int		check_win_size(int key, t_fdf **matrix)
 {
@@ -35,7 +35,7 @@ void	full_screen(t_fdf **matrix)
 	PRM.win_y = (PRM.win_y == 1400) ? old_y : 1400;
 }
 
-void	change_window_size(int key, t_dot **matrix)
+void	change_window_size(int key, t_fdf **matrix)
 {
 	if (check_win_size(key, matrix))
 		return ;
@@ -59,7 +59,7 @@ void	new_window(int key, t_fdf **matrix)
 	PRM.win_ptr = mlx_new_window(PRM.mlx_ptr, PRM.win_x, PRM.win_y, "FDF");
 	PRM.shift_x = PRM.win_x / 3;
 	PRM.shift_y = PRM.win_y / 3;
-	draw(matrix);
+	draw_matrix(matrix);
 	mlx_key_hook(PRM.win_ptr, deal_key, matrix);
 	mlx_loop(PRM.mlx_ptr);
 }
