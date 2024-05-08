@@ -51,5 +51,6 @@ t_fdf	**read_file(char *filename);
 void	set_param(t_fdf *a, t_fdf *b, t_fdf *param);
 int	MAX(int a, int b);
 int	MOD(int a);
+int	ft_strcmp(const char *s1, const char *s2);
 
 #endif

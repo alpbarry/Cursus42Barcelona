@@ -6,16 +6,11 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 22:11:34 by Nik               #+#    #+#             */
-/*   Updated: 2019/10/01 21:18:32 by vinograd         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:02:38 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-float	module(float i)
-{
-	return (i < 0) ? -i : i;
-}
 
 void	line(t_fdf a, t_fdf b, t_fdf *param)
 {
@@ -27,7 +22,7 @@ void	line(t_fdf a, t_fdf b, t_fdf *param)
 	set_param(&a, &b, param);
 	dx = b.x - a.x;
 	dy = b.y - a.y;
-	max = MAX(module(dx), module(dy));
+	max = MAX(MOD(dx), MOD(dy));
 	dx /= max;
 	dy /= max;
 	color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
@@ -47,7 +42,7 @@ void	draw_matrix(t_fdf **matrix)
 	int		y;
 	int		x;
 
-	print_menu(PRM);
+	//print_menu(*matrix);
 	y = 0;
 	while (matrix[y])
 	{
@@ -55,9 +50,9 @@ void	draw_matrix(t_fdf **matrix)
 		while (1)
 		{
 			if (matrix[y + 1])
-				line(matrix[y][x], matrix[y + 1][x], &PRM);
+				line(matrix[y][x], matrix[y + 1][x], *matrix);
 			if (!matrix[y][x].is_last)
-				line(matrix[y][x], matrix[y][x + 1], &PRM);
+				line(matrix[y][x], matrix[y][x + 1], *matrix);
 			if (matrix[y][x].is_last)
 				break ;
 			x++;

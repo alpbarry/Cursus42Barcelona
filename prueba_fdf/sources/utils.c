@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 19:22:33 by vinograd          #+#    #+#             */
-/*   Updated: 2024/05/07 21:47:58 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/05/08 13:41:43 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,19 @@ int	MOD(int a)
 		return (-a);
 	else
 		return (a);
+}
+
+int	ft_strcmp(const char *s1, const char *s2)
+{
+	int i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] == s2[i])
+			i++;
+		else
+			return (s1[i] - s2[i]);
+	}
+	return (s1[i] - s2[i]);
 }
