@@ -40,7 +40,12 @@ void	do_key(int key, t_fdf **matrix)
 	if (key == '|')
 		(* matrix)->shift_x += 10;
 	if (key == 49 || key == 87 || key == 23)
-		(* matrix)->is_isometric = ((* matrix)->is_isometric) ? 0 : 1;
+	{
+		if ((*matrix)->is_isometric) 
+       		(*matrix)->is_isometric = 0;
+   		else
+       		(*matrix)->is_isometric = 1;
+	}
 	if (key == 86 || key == 21)
 		(* matrix)->angle += 0.05;
 	if (key == 88 || key == 22)
@@ -53,7 +58,7 @@ int		deal_key(int key, t_fdf **matrix)
 	{
 		mlx_clear_window((* matrix)->mlx_ptr, (* matrix)->win_ptr);
 		do_key(key, matrix);
-		//print_menu(matrix);
+		print_menu(**matrix);
 		draw_matrix(matrix);
 	}
 	if (key == 6 || key == 7 || key == 0 || key == 1 || key == 3)
