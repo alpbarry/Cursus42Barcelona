@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:55:04 by Nik               #+#    #+#             */
-/*   Updated: 2024/05/07 14:57:53 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:22:44 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,19 @@ void	do_key(int key, t_fdf **matrix)
 
 int		deal_key(int key, t_fdf **matrix)
 {
+	int	rows;
+	int	cols;
+	int	fd;
+
+	fd = open((*matrix)->line, O_RDONLY, 0);
+	get_dimensions(fd, &rows, &cols);
+	close(fd);
 	if (is_key(key))
 	{
 		mlx_clear_window((* matrix)->mlx_ptr, (* matrix)->win_ptr);
 		do_key(key, matrix);
+		draw_matrix(matrix, rows, cols);
 		print_menu(**matrix);
-		draw_matrix(matrix);
 	}
 	if (key == 6 || key == 7 || key == 0 || key == 1 || key == 3)
 		new_window(key, matrix);

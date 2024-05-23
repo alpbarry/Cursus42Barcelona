@@ -53,13 +53,16 @@ void	change_window_size(int key, t_fdf **matrix)
 
 void	new_window(int key, t_fdf **matrix)
 {
+	int	rows;
+	int	cols;
 	change_window_size(key, matrix);
 	mlx_destroy_window((* matrix)->mlx_ptr, (* matrix)->win_ptr);
 	(* matrix)->mlx_ptr = mlx_init();
 	(* matrix)->win_ptr = mlx_new_window((* matrix)->mlx_ptr, (* matrix)->win_x, (* matrix)->win_y, "FDF");
 	(* matrix)->shift_x = (* matrix)->win_x / 3;
 	(* matrix)->shift_y = (* matrix)->win_y / 3;
-	draw_matrix(matrix);
+	get_dimensions(open((* matrix)->line, O_RDONLY, 0), &rows, &cols);
+	draw_matrix(matrix, rows, cols);
 	mlx_key_hook((* matrix)->win_ptr, deal_key, matrix);
 	mlx_loop((* matrix)->mlx_ptr);
 }

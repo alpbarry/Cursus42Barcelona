@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/30 22:11:34 by Nik               #+#    #+#             */
-/*   Updated: 2024/05/08 13:02:38 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:14:26 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,25 @@ void	line(t_fdf a, t_fdf b, t_fdf *param)
 	}
 }
 
-void	draw_matrix(t_fdf **matrix)
+void	draw_matrix(t_fdf **matrix, int rows, int cols)
 {
 	int		y;
 	int		x;
+	//int	color;
 
-	//print_menu(*matrix);
+	//print_menu(**matrix);
 	y = 0;
-	while (matrix[y])
+	while (y < rows)
 	{
 		x = 0;
-		while (1)
+		while (x < cols)
 		{
-			if (matrix[y + 1])
-				line(matrix[y][x], matrix[y + 1][x], *matrix);
-			if (!matrix[y][x].is_last)
-				line(matrix[y][x], matrix[y][x + 1], *matrix);
-			if (matrix[y][x].is_last)
-				break ;
+			//color = matrix[y][x].color;
+			printf("%f %f\n", matrix[y][x].x, matrix[y][x].y);
+			if (y + 1 < rows)
+				line(matrix[y][x], matrix[y + 1][x], *matrix/*,matrix[y][x].line*/);
+			if (x + 1 < cols)
+				line(matrix[y][x], matrix[y][x + 1], *matrix/*, matrix[y][x].line*/);
 			x++;
 		}
 		y++;

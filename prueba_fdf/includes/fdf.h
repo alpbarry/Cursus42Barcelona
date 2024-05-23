@@ -39,11 +39,12 @@ typedef struct	s_fdf
 	int			win_y;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	char		*line;
 }				t_fdf;
 
 void	new_window(int key, t_fdf **matrix);
 int		deal_key(int key, t_fdf **matrix);
-void	draw_matrix(t_fdf **matrix);
+void	draw_matrix(t_fdf **matrix, int rows, int cols);
 void	ft_error(char *error);
 void	isometric(t_fdf *fdf, double angle);
 void	print_menu(t_fdf param);
@@ -52,5 +53,6 @@ void	set_param(t_fdf *a, t_fdf *b, t_fdf *param);
 int	MAX(int a, int b);
 int	MOD(int a);
 int	ft_strcmp(const char *s1, const char *s2);
+void	get_dimensions(int fd, int *rows, int *cols);
 
 #endif
