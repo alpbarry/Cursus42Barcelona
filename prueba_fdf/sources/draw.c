@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/30 22:11:34 by Nik               #+#    #+#             */
-/*   Updated: 2024/05/23 11:14:26 by alphbarr         ###   ########.fr       */
+/*   Created: 2024/05/24 11:34:52 by alphbarr          #+#    #+#             */
+/*   Updated: 2024/05/24 11:34:57 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	draw_matrix(t_fdf **matrix, int rows, int cols)
 	int		x;
 	//int	color;
 
-	//print_menu(**matrix);
+	print_menu(**matrix);
 	y = 0;
 	while (y < rows)
 	{
@@ -51,7 +51,7 @@ void	draw_matrix(t_fdf **matrix, int rows, int cols)
 		while (x < cols)
 		{
 			//color = matrix[y][x].color;
-			printf("%f %f\n", matrix[y][x].x, matrix[y][x].y);
+			printf("%f %f\n", matrix[y][x].x, matrix[y][x].y);//DEBUG
 			if (y + 1 < rows)
 				line(matrix[y][x], matrix[y + 1][x], *matrix/*,matrix[y][x].line*/);
 			if (x + 1 < cols)

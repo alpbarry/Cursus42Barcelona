@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 00:30:47 by Nik               #+#    #+#             */
-/*   Updated: 2024/05/07 14:57:17 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/05/24 11:22:40 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,16 @@ void	full_screen(t_fdf **matrix)
 		old_x = (* matrix)->win_x;
 		old_y = (* matrix)->win_y;
 	}
-	(* matrix)->win_x = ((* matrix)->win_x == 2560) ? old_x : 2560;
-	(* matrix)->win_y = ((* matrix)->win_y == 1400) ? old_y : 1400;
+	if ((* matrix)->win_x == 2560)
+    {
+        (* matrix)->win_x = old_x;
+        (* matrix)->win_y = old_y;
+    }
+    else
+    {
+        (* matrix)->win_x = 2560;
+        (* matrix)->win_y = 1400;
+    }	
 }
 
 void	change_window_size(int key, t_fdf **matrix)
@@ -53,16 +61,13 @@ void	change_window_size(int key, t_fdf **matrix)
 
 void	new_window(int key, t_fdf **matrix)
 {
-	int	rows;
-	int	cols;
 	change_window_size(key, matrix);
 	mlx_destroy_window((* matrix)->mlx_ptr, (* matrix)->win_ptr);
 	(* matrix)->mlx_ptr = mlx_init();
 	(* matrix)->win_ptr = mlx_new_window((* matrix)->mlx_ptr, (* matrix)->win_x, (* matrix)->win_y, "FDF");
 	(* matrix)->shift_x = (* matrix)->win_x / 3;
 	(* matrix)->shift_y = (* matrix)->win_y / 3;
-	get_dimensions(open((* matrix)->line, O_RDONLY, 0), &rows, &cols);
-	draw_matrix(matrix, rows, cols);
+	draw_matrix(matrix, (* matrix)->rows, (* matrix)->cols);
 	mlx_key_hook((* matrix)->win_ptr, deal_key, matrix);
 	mlx_loop((* matrix)->mlx_ptr);
 }

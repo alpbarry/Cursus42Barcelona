@@ -6,7 +6,7 @@
 #    By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 12:29:05 by alphbarr          #+#    #+#              #
-#    Updated: 2024/04/22 20:11:53 by alphbarr         ###   ########.fr        #
+#    Updated: 2024/05/24 12:40:16 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 RM = rm -rf
@@ -45,13 +45,13 @@ all:
 	@make $(NAME) $(NPD)
 #-Llibft -lft
 $(NAME): $(OBJS) $(LIB)
-	@$(CC) $(OBJS) $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -o $(NAME)
+	@$(CC) $(OBJS) -fsanitize=address $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -o $(NAME)
 	@echo "Library $@ Done :)"
 
 $(OBJDIR)%.o: $(SOURCES_DIRECTORY)%.c Makefile $(LIB)
 	@mkdir -p $(@D)
 	@echo "$(GREEN) Compiling... $<..."
-	@$(CC) $(CCFLAGS) -Iincludes -MMD -c $< -o $@
+	@$(CC) $(CCFLAGS) -fsanitize=address -Iincludes -MMD -c $< -o $@
 	@echo "$(RED) $@ created!"
 
 clean:

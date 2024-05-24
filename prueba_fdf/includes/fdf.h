@@ -40,6 +40,8 @@ typedef struct	s_fdf
 	void		*mlx_ptr;
 	void		*win_ptr;
 	char		*line;
+	int			rows;
+	int			cols;
 }				t_fdf;
 
 void	new_window(int key, t_fdf **matrix);

@@ -93,11 +93,11 @@ int	get_points(char *line, t_fdf **matrix, int y)
 	x = 0;
 	while (points[x])
 	{
-		if (ft_strcmp(points[x], "\n") == 0)
+		/*if (ft_strcmp(points[x], "\n") == 0)
 		{
 			x++;
 			continue;
-		}
+		}*/
 		ft_atoi(points[x]);
 		matrix[y][x].z = ft_atoi(points[x]);
 		matrix[y][x].x = x;
@@ -150,8 +150,11 @@ t_fdf	**read_file(char *filename)
 		get_points(line, matrix, y++);
 		line = get_next_line(fd);
 	}
+
 	free(line);
-	matrix[y] = NULL;
+	// matrix[y] = NULL;
+	(*matrix)->rows = rows;
+	(*matrix)->cols = cols;
 	close(fd);
 	return (matrix);
 }
