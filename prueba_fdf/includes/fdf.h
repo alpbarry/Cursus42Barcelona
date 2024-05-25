@@ -57,4 +57,11 @@ int	MOD(int a);
 int	ft_strcmp(const char *s1, const char *s2);
 void	get_dimensions(int fd, int *rows, int *cols);
 
+//KEYS
+void	handle_angle_keys(int key, t_fdf **matrix);
+void	handle_scale_keys(int key, t_fdf **matrix);
+void	handle_shift_keys(int key, t_fdf **matrix);
+void	handle_z_scale_keys(int key, t_fdf **matrix);
+void	handle_isometric_keys(int key, t_fdf **matrix);
+
 #endif
