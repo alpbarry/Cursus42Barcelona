@@ -25,8 +25,12 @@ void	line(t_fdf a, t_fdf b, t_fdf *param)
 	max = MAX(MOD(dx), MOD(dy));
 	dx /= max;
 	dy /= max;
-	color = (b.z || a.z) ? 0xfc0345 : 0xBBFAFF;
-	color = (b.z != a.z) ? 0xfc031c : color;
+	if (b.z || a.z)
+    	color = 0xfc0345;
+	else
+    	color = 0xBBFAFF;
+	if (b.z != a.z)
+    	color = 0xfc031c;
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
 		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
@@ -51,7 +55,6 @@ void	draw_matrix(t_fdf **matrix, int rows, int cols)
 		while (x < cols)
 		{
 			//color = matrix[y][x].color;
-			printf("%f %f\n", matrix[y][x].x, matrix[y][x].y);//DEBUG
 			if (y + 1 < rows)
 				line(matrix[y][x], matrix[y + 1][x], *matrix/*,matrix[y][x].line*/);
 			if (x + 1 < cols)

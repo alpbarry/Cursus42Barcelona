@@ -30,20 +30,11 @@ void	set_default(t_fdf *param)
 int		main(int ac, char **av)
 {
 	t_fdf	**matrix;
-	/*int	fd;
-	int	rows;
-	int	cols;
-	//int		color;*/
 
 	if (ac != 2)
 		ft_error("error of ./fdf map.fdf");
 	matrix = read_file(av[1]);
 	set_default(matrix[0]);
-	/*fd = open(av[1], O_RDONLY, 0);
-	if (fd < 0)
-		ft_error("error opening file");
-	get_dimensions(fd, &rows, &cols);
-	close(fd);*/
 	draw_matrix(matrix, (* matrix)->rows, (* matrix)->cols);
 	mlx_key_hook((* matrix)->win_ptr, deal_key, matrix);
 	mlx_loop((* matrix)->mlx_ptr);

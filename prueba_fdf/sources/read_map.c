@@ -12,38 +12,14 @@
 
 #include "../includes/fdf.h"
 
-char	*save_line(char *line)
-{
-	char	*new;
-	int		i;
-
-	i = 0;
-	while (line[i] != '\0')
-		i++;
-	new = (char *)malloc(sizeof(char) * (i + 1));
-	if (new == NULL)
-		return (NULL);
-	i = 0;
-	while (line[i] != '\0')
-	{
-		new[i] = line[i];
-		i++;
-	}
-	new[i] = '\0';
-	return (new);
-
-}
-
 void	get_dimensions(int fd, int *rows, int *cols)
 {
 	char	*line;
 	int		i;
 	char	**points;
-	char	**saved_line;
 
 	*rows = 0;
 	*cols = 0;
-	saved_line = NULL;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -61,25 +37,6 @@ void	get_dimensions(int fd, int *rows, int *cols)
 		(*rows)++;
 		line = get_next_line(fd);
 	}
-}
-
-int		ft_wordcounter(char *s, char c)
-{
-	int i;
-	int count;
-
-	count = 0;
-	i = 0;
-	while (s[i])
-	{
-		while (s[i] == c && s[i] != '\0')
-			i++;
-		if (s[i])
-			count++;
-		while (s[i] != c && s[i] != '\0')
-			i++;
-	}
-	return (count);
 }
 
 int	get_points(char *line, t_fdf **matrix, int y)
@@ -109,33 +66,27 @@ int	get_points(char *line, t_fdf **matrix, int y)
 	return (x);
 }
 
-t_fdf	**read_file(char *filename)
+t_fdf	**initialize_matrix(int rows, int cols)
 {
-	t_fdf	**matrix;
-	int		y;
-	int		fd;
-	char	*line;
-	int		cols;
-	int		rows;
 	int		i;
+	t_fdf	**matrix;
 
-	fd = open(filename, O_RDONLY, 0);
-	if (fd < 0)
-	{
-		ft_error("file does not exist");
-		return (NULL);
-	}
-	rows = 0;
-	cols = 0;
-	get_dimensions(fd, &rows, &cols);
-	close(fd);
-	matrix = (t_fdf **)malloc(sizeof(t_fdf *) * rows);
 	i = 0;
+	matrix = (t_fdf **)malloc(sizeof(t_fdf *) * rows);
 	while (i < rows)
 	{
 		matrix[i] = (t_fdf *)malloc(sizeof(t_fdf) * cols);
 		i++;
 	}
+	return (matrix);
+}
+
+t_fdf	**fill_matrx(t_fdf **matrix, char *filename, int rows, int cols)
+{
+	int		y;
+	char	*line;
+	int		fd;
+
 	y = 0;
 	line = NULL;
 	fd = open(filename, O_RDONLY, 0);
@@ -150,11 +101,29 @@ t_fdf	**read_file(char *filename)
 		get_points(line, matrix, y++);
 		line = get_next_line(fd);
 	}
-
 	free(line);
-	// matrix[y] = NULL;
 	(*matrix)->rows = rows;
 	(*matrix)->cols = cols;
 	close(fd);
 	return (matrix);
+}
+
+t_fdf	**read_file(char *filename)
+{
+	int	fd;
+	int	rows;
+	int	cols;
+	t_fdf	**matrix;
+
+	rows = 0;
+	cols = 0;
+	fd = open(filename, O_RDONLY, 0);
+	if (fd < 0)
+	{
+		ft_error("file does not exist");
+		return (NULL);
+	}
+	get_dimensions(fd, &rows, &cols);
+	matrix = initialize_matrix(rows, cols);
+	return (fill_matrx(matrix, filename, rows, cols));
 }
