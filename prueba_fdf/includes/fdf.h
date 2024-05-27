@@ -15,9 +15,29 @@
 
 // Keycodes
 
-#  define KEY_ESC 53
 
 # endif
+# define KEY_ESC 53
+# define KEY_8 91
+# define KEY_8T 28
+# define KEY_2 84
+# define KEY_2T 19
+# define KEY_4 86
+# define KEY_4T 21
+# define KEY_6 88
+# define KEY_6T 22
+# define KEY_P 24
+# define KEY_PT 69
+# define KEY_M 27
+# define KEY_MT 78
+# define KEY_UP 126
+# define KEY_DOWN 125
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_5 87
+# define KEY_5T 23
+# define KEY_SPACE 49
+
 
 // STRUCTURES
 
