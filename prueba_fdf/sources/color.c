@@ -6,12 +6,12 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:38:24 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/12 20:57:28 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:07:40 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/fdf.h"
 
-
+/*
 int	create_color(int c)
 {
 	int	r;
@@ -68,11 +68,11 @@ int	search_color(char	*point)
 		color = parse_color(&point[i]);
 	}
 	i = 0;
-	/*while (point[i])
+	while (point[i])
 	{
 		free(point[i]);
 		i++;
-	}*/
+	}
 	//free(point);
 	return (color);
-}
+}*/

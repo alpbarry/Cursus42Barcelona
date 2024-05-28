@@ -64,6 +64,7 @@ typedef struct	s_fdf
 	int			cols;
 }				t_fdf;
 
+
 void	new_window(int key, t_fdf **matrix);
 int		deal_key(int key, t_fdf **matrix);
 void	draw_matrix(t_fdf **matrix, int rows, int cols);
@@ -72,9 +73,9 @@ void	isometric(t_fdf *fdf, double angle);
 void	print_menu(t_fdf param);
 t_fdf	**read_file(char *filename);
 void	set_param(t_fdf *a, t_fdf *b, t_fdf *param);
-int	MAX(int a, int b);
-int	MOD(int a);
-int	ft_strcmp(const char *s1, const char *s2);
+int		max(int a, int b);
+int		mod(int a);
+int		ft_strcmp(const char *s1, const char *s2);
 void	get_dimensions(int fd, int *rows, int *cols);
 
 //KEYS
