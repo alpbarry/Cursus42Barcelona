@@ -1,49 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/28 15:17:31 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/28 15:18:12 by alphbarr         ###   ########.fr       */
+/*   Created: 2024/01/09 13:21:58 by alphbarr          #+#    #+#             */
+/*   Updated: 2024/01/09 18:50:14 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../includes/fdf.h"
+#include "libft.h"
 
-void	ft_error(char *error)
+size_t	ft_strlen(const char *s)
 {
-	ft_printf("%s\n", error);
-	exit(1);
-}
-
-int	max(int a, int b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
-
-int	mod(int a)
-{
-	if (a < 0)
-		return (-a);
-	else
-		return (a);
-}
-
-int	ft_strcmp(const char *s1, const char *s2)
-{
-	int	i;
+	size_t	i;
 
 	i = 0;
-	while (s1[i] && s2[i])
+	while (s[i] != '\0')
 	{
-		if (s1[i] == s2[i])
-			i++;
-		else
-			return (s1[i] - s2[i]);
+		i++;
 	}
-	return (s1[i] - s2[i]);
+	return (i);
 }
