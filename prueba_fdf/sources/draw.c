@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:34:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/24 11:34:57 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:19:42 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@ void	line(t_fdf a, t_fdf b, t_fdf *param)
 {
 	float	dx;
 	float	dy;
-	float	max;
+	float	maxim;
 	int		color;
 
 	set_param(&a, &b, param);
 	dx = b.x - a.x;
 	dy = b.y - a.y;
-	max = MAX(MOD(dx), MOD(dy));
-	dx /= max;
-	dy /= max;
+	maxim = max(mod(dx), mod(dy));
+	dx /= maxim;
+	dy /= maxim;
 	if (b.z || a.z)
 		color = 0xfc0345;
 	else

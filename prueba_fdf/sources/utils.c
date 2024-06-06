@@ -1,15 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
+/*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/01 19:22:33 by vinograd          #+#    #+#             */
-/*   Updated: 2024/05/08 13:41:43 by alphbarr         ###   ########.fr       */
+/*   Created: 2024/05/28 15:17:31 by alphbarr          #+#    #+#             */
+/*   Updated: 2024/05/28 15:18:12 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "../includes/fdf.h"
 
 void	ft_error(char *error)
@@ -18,7 +17,7 @@ void	ft_error(char *error)
 	exit(1);
 }
 
-int	MAX(int a, int b)
+int	max(int a, int b)
 {
 	if (a > b)
 		return (a);
@@ -26,7 +25,7 @@ int	MAX(int a, int b)
 		return (b);
 }
 
-int	MOD(int a)
+int	mod(int a)
 {
 	if (a < 0)
 		return (-a);

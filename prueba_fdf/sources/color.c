@@ -6,12 +6,17 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 18:38:24 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/12 20:57:28 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:07:40 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/fdf.h"
+<<<<<<< HEAD
 /*
 
+=======
+
+/*
+>>>>>>> 99cdbb3defb80f51e78b830ec375428cdc39f0c5
 int	create_color(int c)
 {
 	int	r;
