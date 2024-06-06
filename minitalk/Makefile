@@ -1,3 +1,5 @@
+NPD = --no-print-directory
+
 SOURCES = server.c client.c
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -8,17 +10,17 @@ all: server client
 
 bonus: server client
 
-server: server.o Libft
-	$(CC) -o $@ $< -Llibft -lft
+server: server.o libft
+	$(CC) -o $@ $< -Llibft -lft -lft
 
 client: client.o Libft
-	$(CC) -o $@ $< -Llibft -lft
+	$(CC) -o $@ $< -Llibft
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
 
 libft:
-	make -C libft
+	@make -C libft $(NPD)
 
 clean:
 	rm -f $(OBJECTS)
