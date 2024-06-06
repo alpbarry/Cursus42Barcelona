@@ -53,7 +53,7 @@ int	get_points(char *line, t_fdf **matrix, int y)
 		/*if (ft_strcmp(points[x], "\n") == 0)
 		{
 			x++;
-			continue;
+			continue ;
 		}*/
 		ft_atoi(points[x]);
 		matrix[y][x].z = ft_atoi(points[x]);
@@ -110,10 +110,10 @@ t_fdf	**fill_matrx(t_fdf **matrix, char *filename, int rows, int cols)
 
 t_fdf	**read_file(char *filename)
 {
-	int	fd;
-	int	rows;
-	int	cols;
-	t_fdf	**matrix;
+	int fd;
+	int rows;
+	int cols;
+	t_fdf **matrix;
 
 	rows = 0;
 	cols = 0;

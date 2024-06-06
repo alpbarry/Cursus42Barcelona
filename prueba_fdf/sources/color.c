@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/fdf.h"
-
+/*
 
 int	create_color(int c)
 {
@@ -68,11 +68,11 @@ int	search_color(char	*point)
 		color = parse_color(&point[i]);
 	}
 	i = 0;
-	/*while (point[i])
+	while (point[i])
 	{
 		free(point[i]);
 		i++;
-	}*/
+	}
 	//free(point);
 	return (color);
-}
+}*/

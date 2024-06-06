@@ -26,11 +26,11 @@ void	line(t_fdf a, t_fdf b, t_fdf *param)
 	dx /= max;
 	dy /= max;
 	if (b.z || a.z)
-    	color = 0xfc0345;
+		color = 0xfc0345;
 	else
-    	color = 0xBBFAFF;
+		color = 0xBBFAFF;
 	if (b.z != a.z)
-    	color = 0xfc031c;
+		color = 0xfc031c;
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
 		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);
@@ -43,9 +43,8 @@ void	line(t_fdf a, t_fdf b, t_fdf *param)
 
 void	draw_matrix(t_fdf **matrix, int rows, int cols)
 {
-	int		y;
-	int		x;
-	//int	color;
+	int	y;
+	int	x;
 
 	print_menu(**matrix);
 	y = 0;
@@ -54,11 +53,10 @@ void	draw_matrix(t_fdf **matrix, int rows, int cols)
 		x = 0;
 		while (x < cols)
 		{
-			//color = matrix[y][x].color;
 			if (y + 1 < rows)
-				line(matrix[y][x], matrix[y + 1][x], *matrix/*,matrix[y][x].line*/);
+				line(matrix[y][x], matrix[y + 1][x], *matrix);
 			if (x + 1 < cols)
-				line(matrix[y][x], matrix[y][x + 1], *matrix/*, matrix[y][x].line*/);
+				line(matrix[y][x], matrix[y][x + 1], *matrix);
 			x++;
 		}
 		y++;

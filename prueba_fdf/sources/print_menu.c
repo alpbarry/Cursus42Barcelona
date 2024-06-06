@@ -14,7 +14,7 @@
 
 void	print_menu(t_fdf param)
 {
-	char *menu;
+	char	*menu;
 
 	menu = "up, down, left, right: move picture";
 	mlx_string_put(param.mlx_ptr, param.win_ptr, 10, 5, 0x03fc35, menu);
