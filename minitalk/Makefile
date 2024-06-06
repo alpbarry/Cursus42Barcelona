@@ -11,10 +11,10 @@ all: server client
 bonus: server client
 
 server: server.o libft
-	$(CC) -o $@ $< -Llibft -lft
+	$(CC) -o $@ $< -Llibft -lft -lft
 
-client: client.o libft
-	$(CC) -o $@ $< -Llibft -lft
+client: client.o Libft
+	$(CC) -o $@ $< -Llibft
 
 %.o: %.c
 	$(CC) -c $(CFLAGS) $?
@@ -25,7 +25,7 @@ libft:
 clean:
 	rm -f $(OBJECTS)
 	make -C libft clean
-	
+
 fclean: clean
 	rm -f server client libft/libft.a
 
