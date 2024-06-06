@@ -13,7 +13,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "libft/libft.h"
+#include "Libft/libft.h"
 
 static void	action(int sig)
 {
