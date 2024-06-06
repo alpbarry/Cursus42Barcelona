@@ -39,6 +39,7 @@ typedef struct	s_fdf
 	int			win_y;
 	void		*mlx_ptr;
 	void		*win_ptr;
+	void		*img_ptr;
 	char		*line;
 	int			rows;
 	int			cols;

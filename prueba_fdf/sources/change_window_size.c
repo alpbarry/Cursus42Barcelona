@@ -20,7 +20,7 @@ int		check_win_size(int key, t_fdf **matrix)
 		return (1);
 	return (0);
 }
-	
+
 void	full_screen(t_fdf **matrix)
 {
 	static int old_x;
@@ -40,7 +40,7 @@ void	full_screen(t_fdf **matrix)
     {
         (* matrix)->win_x = 2560;
         (* matrix)->win_y = 1400;
-    }	
+    }
 }
 
 void	change_window_size(int key, t_fdf **matrix)

@@ -23,6 +23,7 @@ void	set_default(t_fdf *param)
 	param->shift_x = param->win_x / 3;
 	param->shift_y = param->win_y / 3;
 	param->mlx_ptr = mlx_init();
+	param->img_ptr = mlx_new_image(param->mlx_ptr, param->win_x, param->win_y);
 	param->win_ptr =\
 	mlx_new_window(param->mlx_ptr, param->win_x, param->win_y, "FDF");
 }
