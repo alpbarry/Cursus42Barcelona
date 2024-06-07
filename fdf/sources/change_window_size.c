@@ -43,19 +43,6 @@ void	full_screen(t_fdf **matrix)
 		(*matrix)->win_x = 2560;
 		(*matrix)->win_y = 1400;
 	}
-<<<<<<< HEAD
-	if ((* matrix)->win_x == 2560)
-    {
-        (* matrix)->win_x = old_x;
-        (* matrix)->win_y = old_y;
-    }
-    else
-    {
-        (* matrix)->win_x = 2560;
-        (* matrix)->win_y = 1400;
-    }
-=======
->>>>>>> 6883a62a0381a9db1ed72170689d90be7fe27841
 }
 
 void	change_window_size(int key, t_fdf **matrix)

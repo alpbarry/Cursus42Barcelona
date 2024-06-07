@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:55:04 by Nik               #+#    #+#             */
-/*   Updated: 2024/05/24 11:37:58 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/04 18:26:52 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,11 @@
 
 int	is_key(int key)
 {
-<<<<<<< HEAD
-	return (key == 24 || key == 69 || key == 27 || key == 78 ||
-			key == 91 || key == 28 || key == 84 || key == 19 ||
-			key == '~' || key == '}' || key == '{' || key == '|' ||
-			key == 87 || key == 23 || key == 86 || key == 21 ||
-			key == 49 || key == 88 || key == 22);
-=======
-	return (key == 24 || key == 69 || key == 27 || key == 78 || key == 91
-		|| key == 28 || key == 84 || key == 19 || key == '~' || key == '}'
-		|| key == '{' || key == '|' || key == 87 || key == 23 || key == 86
-		|| key == 21 || key == 49 || key == 88 || key == 22);
->>>>>>> 99cdbb3defb80f51e78b830ec375428cdc39f0c5
+	return (key == KEY_P || key == KEY_PT || key == KEY_M || key == KEY_MT
+		|| key == KEY_8 || key == KEY_8T || key == KEY_2 || key == KEY_2T
+		|| key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT
+		|| key == KEY_RIGHT || key == KEY_5 || key == KEY_5T || key == KEY_4
+		|| key == KEY_4T || key == KEY_SPACE || key == KEY_6 || key == KEY_6T);
 }
 
 void	do_key(int key, t_fdf **matrix)
@@ -41,17 +34,17 @@ int	deal_key(int key, t_fdf **matrix)
 {
 	if (is_key(key))
 	{
-		mlx_clear_window((*matrix)->mlx_ptr, (*matrix)->win_ptr);
+		mlx_destroy_image((*matrix)->mlx_ptr, (*matrix)->img_ptr);
 		do_key(key, matrix);
 		draw_matrix(matrix, (*matrix)->rows, (*matrix)->cols);
 		print_menu(**matrix);
 	}
 	if (key == 6 || key == 7 || key == 0 || key == 1 || key == 3)
 		new_window(key, matrix);
-	if (key == '5')
+	if (key == KEY_ESC)
 	{
 		mlx_destroy_window((*matrix)->mlx_ptr, (*matrix)->win_ptr);
-		free(matrix);
+		free_matrix(matrix, (*matrix)->rows);
 		exit(0);
 	}
 	return (0);

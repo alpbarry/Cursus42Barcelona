@@ -13,15 +13,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char	**my_free_split(char **split, size_t e)
+char	**my_free_split(char **split)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < e)
+	while (split[i])
 	{
 		free(split[i]);
-		split[i] = NULL;
 		i++;
 	}
 	free(split);
@@ -66,7 +65,7 @@ char	**allocate_word(char const *s, char c, char **str, int i)
 			if (start >= 0)
 				str[j] = ft_substr(s, start, i - start);
 			if (!str[j])
-				return (my_free_split(str, j));
+				return (my_free_split(str));
 			if (start >= 0)
 				j++;
 		}

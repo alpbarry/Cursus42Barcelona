@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.c                                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:13:25 by vinograd          #+#    #+#             */
-/*   Updated: 2024/05/28 15:15:36 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/07 20:47:44 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,9 @@ void	set_default(t_fdf *param)
 	param->shift_x = param->win_x / 3;
 	param->shift_y = param->win_y / 3;
 	param->mlx_ptr = mlx_init();
-<<<<<<< HEAD
 	param->img_ptr = mlx_new_image(param->mlx_ptr, param->win_x, param->win_y);
 	param->win_ptr =\
 	mlx_new_window(param->mlx_ptr, param->win_x, param->win_y, "FDF");
-=======
-<<<<<<< HEAD
-	param->win_ptr =
-		mlx_new_window(param->mlx_ptr, param->win_x, param->win_y, "FDF");
-=======
-	param->win_ptr = mlx_new_window(param->mlx_ptr, param->win_x, param->win_y,
-			"FDF");
->>>>>>> 99cdbb3defb80f51e78b830ec375428cdc39f0c5
->>>>>>> 6883a62a0381a9db1ed72170689d90be7fe27841
 }
 
 int	main(int ac, char **av)
@@ -49,8 +39,4 @@ int	main(int ac, char **av)
 	draw_matrix(matrix, (*matrix)->rows, (*matrix)->cols);
 	mlx_key_hook((*matrix)->win_ptr, deal_key, matrix);
 	mlx_loop((*matrix)->mlx_ptr);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 99cdbb3defb80f51e78b830ec375428cdc39f0c5

@@ -1,72 +1,73 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/04/16 12:29:05 by alphbarr          #+#    #+#              #
-#    Updated: 2024/05/24 12:40:16 by alphbarr         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-RM = rm -rf
+SRCS	= main.c \
+			change_window_size.c \
+			deal_key.c \
+			draw.c \
+			isometric.c \
+			keys.c \
+			print_menu.c \
+			read_map.c \
+			set_param.c \
+			utils.c
 
-CC = gcc
-CCFLAGS = -g -Wall -Wextra -Werror -Imlx
+# Ajuste de OBJS para que apunten al directorio correcto
+OBJS	= ${addprefix objects/, ${SRCS:.c=.o}}
 
-SOURCES_DIRECTORY = ./sources/
+# BOBJS y BDEPS no parecen necesarios sin definir BSRCS en el contexto dado
+# BOBJS	= ${addprefix obj/, ${BSRCS:.c=.o}}
+# DEPS y BDEPS tampoco son utilizados en este contexto
+# DEPS	= ${addprefix obj/, ${SRCS:.c=.d}}
+# BDEPS	= ${addprefix obj/, ${BSRCS:.c=.d}}
 
-NAME = fdf
+NAME	= fdf
 
-NPD = --no-print-directory
+RM		= rm -rf
 
-SRC_LIST = $(wildcard $(SOURCES_DIRECTORY)*.c)
+CC		= gcc
 
-SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SRC_LIST))
-OBJDIR = objects/
-OBJS_LIST = $(patsubst %.c, %.o, $(notdir $(SRC_LIST)))
-OBJS = $(addprefix $(OBJDIR), $(OBJS_LIST))
+CFLAGS	= -Wall -Wextra -Werror
 
-LIB = libft/libft.a\
-	ft_printf/libftprintf.a \
+#MXFLAGS	= -Llibs/mlx -lmlx -framework OpenGL -framework AppKit -lm
 
-# COLORS
+LIBFT	= libft/libft.a
+FT_PRINTF = ft_printf/libftprintf.a
 
-GREEN = \033[0;32m
-RED = \033[0;31m
-RESET = \033[0m
+MLXLIB	= mlx
 
-.PHONY: all clean fclean re
+all:		dir ${NAME}
 
-all:
-	@make -C mlx $(NPD)
-	@make -C libft $(NPD)
-	@make -C ft_printf $(NPD)
-	@make $(NAME) $(NPD)
-#-Llibft -lft
-$(NAME): $(OBJS) $(LIB)
-	@$(CC) $(OBJS) -fsanitize=address $(LIB) -Lmlx -lmlx -framework OpenGL -framework AppKit -lm -o $(NAME)
-	@echo "Library $@ Done :)"
+${NAME}:	${OBJS} dir
+				${CC} ${CFLAGS} ${OBJS} ${LIBFT} ${MXFLAGS} -o ${NAME}
 
-$(OBJDIR)%.o: $(SOURCES_DIRECTORY)%.c Makefile $(LIB)
-	@mkdir -p $(@D)
-	@echo "$(GREEN) Compiling... $<..."
-	@$(CC) $(CCFLAGS) -fsanitize=address -Iincludes -MMD -c $< -o $@
-	@echo "$(RED) $@ created!"
+linux:
+				make LINUX=1 MLXLIB=mlx_linux MXFLAGS="libs/mlx_linux/libmlx.a -lXext -lX11 -lm -lz" all
+
+dir:
+				mkdir -p objects
+				make -C libft
+				make -C ft_printf
+				make -C mlx_linux
+
+# Ajuste para compilar los archivos en objects/
+objects/%.o: src/%.c Makefile
+
+				${CC} ${CFLAGS} -c $< -MMD -o $@ -D LINUX=1
 
 clean:
-	@make clean -C libft/ $(NPD)
-	make clean -C ft_printf/ $(NPD)
-	@echo "Remove *.o"
-	@${RM} -r $(OBJDIR)
-	@echo "Done !"
+				make clean -C libft/
+				make clean -C ft_printf/
+				make clean -C mlx_linux
+				${RM} objects/
 
-fclean: clean
-	@make clean -C mlx/ $(NPD)
-	@make fclean -C libft $(NPD)
-	@make fclean -C ft_printf $(NPD)
-	@echo "Remove $(NAME)"
-	@${RM} $(NAME)
-	@echo "Done !"
+lclean:
+				make MLXLIB=mlx_linux fclean
 
-re: fclean all
+fclean:		clean
+				make clean -C mlx_linux
+				make fclean -C libft
+				make fclean -C ft_printf
+				${RM} ${NAME}
+
+re:			fclean all
+
+.PHONY:		clean fclean re all linux bonus lbonus lclean
+
