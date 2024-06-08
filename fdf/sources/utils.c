@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:17:31 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/28 15:18:12 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/08 11:53:09 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/fdf.h"
@@ -46,4 +46,17 @@ int	ft_strcmp(const char *s1, const char *s2)
 			return (s1[i] - s2[i]);
 	}
 	return (s1[i] - s2[i]);
+}
+
+void	free_matrix(t_fdf **matrix, int rows)
+{
+	int	i;
+
+	i = 0;
+	while (i < rows)
+	{
+		free(matrix[i]);
+		i++;
+	}
+	free(matrix);
 }

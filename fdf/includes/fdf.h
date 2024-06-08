@@ -6,13 +6,13 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:34:35 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/06/04 18:13:37 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/08 12:58:30 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FDF_H
 # define FDF_H
 
-# include "../mlx/mlx.h"
+# include "../mlx_linux/mlx.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
 # include "libft.h"
@@ -67,6 +67,10 @@ typedef struct s_fdf
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*img_ptr;
+	char	*addr;
+	int	size_line;
+	int	bpp;
+	int	endian;
 	char	*line;
 	int		rows;
 	int		cols;

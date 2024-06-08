@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:55:04 by Nik               #+#    #+#             */
-/*   Updated: 2024/06/04 18:26:52 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/08 13:28:28 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,28 @@ void	do_key(int key, t_fdf **matrix)
 	handle_isometric_keys(key, matrix);
 }
 
+void	new_image(t_fdf **matrix)
+{
+	int		i;
+
+	i = 0;
+	while (i < (*matrix)->size_line * (*matrix)->win_y)
+	{
+		(*matrix)->addr[i] = 0;
+		(*matrix)->addr[i + 1] = 0;
+		(*matrix)->addr[i + 2] = 0;
+		i += 4;
+	}
+}
+
 int	deal_key(int key, t_fdf **matrix)
 {
 	if (is_key(key))
 	{
-		mlx_destroy_image((*matrix)->mlx_ptr, (*matrix)->img_ptr);
+		new_image(matrix);
 		do_key(key, matrix);
 		draw_matrix(matrix, (*matrix)->rows, (*matrix)->cols);
+		mlx_put_image_to_window((*matrix)->mlx_ptr, (*matrix)->win_ptr, (*matrix)->img_ptr, 0, 0);
 		print_menu(**matrix);
 	}
 	if (key == 6 || key == 7 || key == 0 || key == 1 || key == 3)
