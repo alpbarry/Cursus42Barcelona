@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:13:25 by vinograd          #+#    #+#             */
-/*   Updated: 2024/06/08 13:31:57 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/08 13:56:55 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ void	set_default(t_fdf *param)
 	param->addr = mlx_get_data_addr(param->img_ptr, &(param->bpp), &(param->size_line), &(param->endian));
 }
 
+int	close_window(t_fdf *param)
+{
+	mlx_destroy_window(param->mlx_ptr, param->win_ptr);
+	exit(0);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_fdf **matrix;
@@ -36,11 +43,9 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_error("error of ./fdf map.fdf");
 	matrix = read_file(av[1]);
-	ft_printf("despues de read file \n");
 	set_default(matrix[0]);
-	ft_printf("despues de set default \n");
 	draw_matrix(matrix, (*matrix)->rows, (*matrix)->cols);
-	ft_printf("despues de draw matrix \n");
+	mlx_hook((*matrix)->win_ptr, 17, 0, close_window, matrix);
 	mlx_key_hook((*matrix)->win_ptr, deal_key, matrix);
 	mlx_loop((*matrix)->mlx_ptr);
 }
