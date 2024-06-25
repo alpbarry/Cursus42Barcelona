@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:56:18 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:08:16 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:42:20 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	free_stash(t_list **stash, char *buf, t_list *node)
 	}
 }
 
-int	ft_strlen(const char *str)
+int	ftsstrlen(const char *str)
 {
 	int	len;
 

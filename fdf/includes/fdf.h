@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:34:35 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/06/08 13:48:51 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:31:48 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FDF_H
@@ -27,25 +27,26 @@
 
 # endif
 # define KEY_ESC 65307
-# define KEY_8 65421
-# define KEY_8T 65296
+# define KEY_8 65431
+# define KEY_8T 56
 # define KEY_2 65433
-# define KEY_2T 65300
+# define KEY_2T 50
 # define KEY_4 65430
-# define KEY_4T 65323
+# define KEY_4T 52
 # define KEY_6 65432
-# define KEY_6T 65324
-# define KEY_P 65300
-# define KEY_PT 65431
-# define KEY_M 65421
-# define KEY_MT 65453
+# define KEY_6T 54
+# define KEY_PLUS 65451
+# define KEY_PLUST 43
+# define KEY_MINUS 65453
+# define KEY_MINUST 45
 # define KEY_UP 65362
 # define KEY_DOWN 65364
 # define KEY_LEFT 65361
 # define KEY_RIGHT 65363
 # define KEY_5 65437
-# define KEY_5T 65305
+# define KEY_5T 53
 # define KEY_SPACE 32
+# define KEY_F 102
 
 // STRUCTURES
 
@@ -68,9 +69,9 @@ typedef struct s_fdf
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*addr;
-	int	size_line;
-	int	bpp;
-	int	endian;
+	int		size_line;
+	int		bpp;
+	int		endian;
 	char	*line;
 	int		rows;
 	int		cols;

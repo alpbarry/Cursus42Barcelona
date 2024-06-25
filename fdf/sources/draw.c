@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 11:34:52 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/06/08 14:01:57 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/25 21:48:47 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	line(t_fdf a, t_fdf b, t_fdf *param)
 		color = 0xBBFAFF;
 	if (b.z != a.z)
 		color = 0xfc031c;
-
 	while ((int)(a.x - b.x) || (int)(a.y - b.y))
 	{
 		mlx_pixel_put(param->mlx_ptr, param->win_ptr, a.x, a.y, color);

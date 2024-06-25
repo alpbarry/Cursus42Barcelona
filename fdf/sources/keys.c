@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:13:00 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/28 15:13:06 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/25 22:32:30 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/fdf.h"
@@ -52,8 +52,8 @@ void	handle_angle_keys(int key, t_fdf **matrix)
 
 void	handle_scale_keys(int key, t_fdf **matrix)
 {
-	if (key == KEY_P || key == KEY_PT)
+	if (key == KEY_PLUS || key == KEY_PLUST)
 		(*matrix)->scale += 3;
-	if (key == KEY_M || key == KEY_MT)
+	if (key == KEY_MINUS || key == KEY_MINUST)
 		(*matrix)->scale -= 3;
 }
