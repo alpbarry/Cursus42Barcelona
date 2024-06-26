@@ -6,11 +6,12 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 15:19:57 by Nik               #+#    #+#             */
-/*   Updated: 2024/05/28 19:58:46 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:23:47 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+#include <sys/stat.h>
 
 void	get_dimensions(int fd, int *rows, int *cols)
 {
@@ -76,9 +77,22 @@ t_fdf	**initialize_matrix(int rows, int cols)
 
 	i = 0;
 	matrix = (t_fdf **)malloc(sizeof(t_fdf *) * rows);
+	if(!matrix)
+	{
+		perror("Failed to allocate memory for rows");
+		return (NULL);
+	}
 	while (i < rows)
 	{
 		matrix[i] = (t_fdf *)malloc(sizeof(t_fdf) * cols);
+		if (!matrix[i])
+		{
+			perror("Failed to allocate for columns");
+			while (--i >= 0)
+				free(matrix[i]);
+			free(matrix);
+			return (NULL);
+		}
 		i++;
 	}
 	return (matrix);
@@ -126,6 +140,7 @@ t_fdf	**read_file(char *filename)
 		ft_error("file does not exist");
 		return (NULL);
 	}
+	check_file_status(fd);	
 	get_dimensions(fd, &rows, &cols);
 	matrix = initialize_matrix(rows, cols);
 	return (fill_matrx(matrix, filename, rows, cols));

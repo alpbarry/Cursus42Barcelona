@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:55:04 by Nik               #+#    #+#             */
-/*   Updated: 2024/06/25 22:33:31 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/26 19:17:40 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	is_key(int key)
 {
-	return (key == KEY_PLUS || key == KEY_PLUST || key == KEY_MINUS || key == KEY_MINUST
+	return (key == KEY_PLUS || key == KEY_PLUST || key == KEY_MINUS
+		|| key == KEY_MINUST
 		|| key == KEY_8 || key == KEY_8T || key == KEY_2 || key == KEY_2T
 		|| key == KEY_UP || key == KEY_DOWN || key == KEY_LEFT
 		|| key == KEY_RIGHT || key == KEY_5 || key == KEY_5T || key == KEY_4
@@ -57,7 +58,10 @@ int	deal_key(int key, t_fdf **matrix)
 	}
 	if (key == KEY_ESC)
 	{
+		mlx_destroy_image((*matrix)->mlx_ptr, (*matrix)->img_ptr);
 		mlx_destroy_window((*matrix)->mlx_ptr, (*matrix)->win_ptr);
+		mlx_destroy_display((*matrix)->mlx_ptr);
+		free((*matrix)->mlx_ptr);
 		free_matrix(matrix, (*matrix)->rows);
 		exit(0);
 	}

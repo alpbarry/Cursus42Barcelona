@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 10:55:41 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/07 16:23:29 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/26 17:51:33 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "get_next_line.h"
@@ -14,7 +14,7 @@
 char	*get_next_line(int fd)
 {
 	static t_list	*stash = NULL;
-	char	*line;
+	char			*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

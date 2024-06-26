@@ -2,7 +2,7 @@ SRCS	= main.c \
 			change_window_size.c \
 			deal_key.c \
 			draw.c \
-			isometric.c \
+			utils2.c \
 			keys.c \
 			print_menu.c \
 			read_map.c \
@@ -15,8 +15,7 @@ NAME	= fdf
 
 RM		= rm -rf
 
-CC		= gcc
-
+CC = cc
 CFLAGS	= -Wall -Wextra -Werror
 
 LIBFT	= libft/libft.a
@@ -27,17 +26,19 @@ MLXLIB	=	mlx_linux/libmlx.a -lXext -lX11 -lm -lz
 all:		dir ${NAME}
 
 ${NAME}:	${OBJS} dir
-				${CC} ${CFLAGS} ${OBJS} ${LIBFT} $(FT_PRINTF) ${MLXLIB} -o ${NAME}
+				@echo "Compiling ${NAME}..."
+				@${CC} ${CFLAGS} ${OBJS} ${LIBFT} $(FT_PRINTF) ${MLXLIB} -o ${NAME}
 dir:
 				mkdir -p objects
-				make -C libft
-				make -C ft_printf
-				make -C mlx_linux
+				@make -s -C libft
+				@make -s -C ft_printf
+				@make -s -C mlx_linux
 
 # Ajuste para compilar los archivos en objects/
 objects/%.o: sources/%.c Makefile
-
+				@echo "Compiling $<..."
 				${CC} ${CFLAGS} -c $< -MMD -o $@
+-include $(OBJS:.o=.d)
 
 clean:
 				make clean -C libft/
@@ -46,7 +47,7 @@ clean:
 				${RM} objects/
 
 fclean:		clean
-				make clean -C mlx_linux
+				# make clean -C mlx_linux
 				make fclean -C libft
 				make fclean -C ft_printf
 				${RM} ${NAME}

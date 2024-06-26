@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 15:17:31 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/06/08 11:53:09 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:32:12 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../includes/fdf.h"
@@ -52,6 +52,8 @@ void	free_matrix(t_fdf **matrix, int rows)
 {
 	int	i;
 
+	if (!matrix)
+		return ;
 	i = 0;
 	while (i < rows)
 	{

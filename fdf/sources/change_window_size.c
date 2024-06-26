@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/02 00:30:47 by Nik               #+#    #+#             */
-/*   Updated: 2024/05/24 11:22:40 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:55:53 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	change_window_size(int key, t_fdf **matrix)
 void	new_window(int key, t_fdf **matrix)
 {
 	change_window_size(key, matrix);
+	mlx_destroy_image((*matrix)->mlx_ptr, (*matrix)->img_ptr);
 	mlx_destroy_window((*matrix)->mlx_ptr, (*matrix)->win_ptr);
 	(*matrix)->mlx_ptr = mlx_init();
 	(*matrix)->win_ptr = mlx_new_window((*matrix)->mlx_ptr, (*matrix)->win_x,

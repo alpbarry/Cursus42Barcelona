@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:34:35 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/06/25 22:31:48 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/26 18:07:31 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FDF_H
@@ -18,6 +18,7 @@
 # include "libft.h"
 # include <fcntl.h>
 # include <math.h>
+# include <sys/stat.h>
 
 // MACROS
 # ifndef ENDIANESS
@@ -97,5 +98,6 @@ void		handle_scale_keys(int key, t_fdf **matrix);
 void		handle_shift_keys(int key, t_fdf **matrix);
 void		handle_z_scale_keys(int key, t_fdf **matrix);
 void		handle_isometric_keys(int key, t_fdf **matrix);
+void		check_file_status(int fd);
 
 #endif
