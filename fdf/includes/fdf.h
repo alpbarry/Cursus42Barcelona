@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 18:34:35 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/06/26 18:07:31 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:41:35 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef FDF_H
@@ -99,5 +99,6 @@ void		handle_shift_keys(int key, t_fdf **matrix);
 void		handle_z_scale_keys(int key, t_fdf **matrix);
 void		handle_isometric_keys(int key, t_fdf **matrix);
 void		check_file_status(int fd);
+int			close_window(t_fdf **param);
 
 #endif

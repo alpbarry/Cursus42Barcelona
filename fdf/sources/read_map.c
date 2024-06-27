@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 15:19:57 by Nik               #+#    #+#             */
-/*   Updated: 2024/06/26 18:23:47 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/27 22:07:35 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,14 @@ int	get_points(char *line, t_fdf **matrix, int y)
 t_fdf	**initialize_matrix(int rows, int cols)
 {
 	int		i;
+	int		j;
 	t_fdf	**matrix;
 
 	i = 0;
 	matrix = (t_fdf **)malloc(sizeof(t_fdf *) * rows);
 	if(!matrix)
 	{
-		perror("Failed to allocate memory for rows");
+		ft_error("Failed to allocate memory for rows");
 		return (NULL);
 	}
 	while (i < rows)
@@ -87,11 +88,17 @@ t_fdf	**initialize_matrix(int rows, int cols)
 		matrix[i] = (t_fdf *)malloc(sizeof(t_fdf) * cols);
 		if (!matrix[i])
 		{
-			perror("Failed to allocate for columns");
+			ft_error("Failed to allocate for columns");
 			while (--i >= 0)
 				free(matrix[i]);
 			free(matrix);
 			return (NULL);
+		}
+		j = 0;
+		while (j < cols)
+		{
+			ft_memset(&matrix[i][j], 0, sizeof(t_fdf));
+			j++;
 		}
 		i++;
 	}
