@@ -6,7 +6,7 @@
 #    By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/16 12:29:05 by alphbarr          #+#    #+#              #
-#    Updated: 2024/04/16 13:39:39 by alphbarr         ###   ########.fr        #
+#    Updated: 2024/06/30 13:18:18 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 AR = ar rcs
@@ -26,8 +26,8 @@ OBJDIR = objects/
 OBJS_LIST = $(patsubst %.c, %.o, $(notdir $(SRC_LIST)))
 OBJS = $(addprefix $(OBJDIR), $(OBJS_LIST))
 
-LIB = ../includes/libft.h\
-	../includes/get_next_line.h
+LIB = sources/libft.h\
+	sources/get_next_line.h
 
 # COLORS
 

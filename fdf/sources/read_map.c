@@ -6,7 +6,7 @@
 /*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/27 15:19:57 by Nik               #+#    #+#             */
-/*   Updated: 2024/06/27 22:07:35 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/30 13:53:13 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,11 @@ int	get_points(char *line, t_fdf **matrix, int y)
 t_fdf	**initialize_matrix(int rows, int cols)
 {
 	int		i;
-	int		j;
 	t_fdf	**matrix;
 
 	i = 0;
 	matrix = (t_fdf **)malloc(sizeof(t_fdf *) * rows);
-	if(!matrix)
+	if (!matrix)
 	{
 		ft_error("Failed to allocate memory for rows");
 		return (NULL);
@@ -93,12 +92,6 @@ t_fdf	**initialize_matrix(int rows, int cols)
 				free(matrix[i]);
 			free(matrix);
 			return (NULL);
-		}
-		j = 0;
-		while (j < cols)
-		{
-			ft_memset(&matrix[i][j], 0, sizeof(t_fdf));
-			j++;
 		}
 		i++;
 	}
@@ -147,7 +140,7 @@ t_fdf	**read_file(char *filename)
 		ft_error("file does not exist");
 		return (NULL);
 	}
-	check_file_status(fd);	
+	check_file_status(fd);
 	get_dimensions(fd, &rows, &cols);
 	matrix = initialize_matrix(rows, cols);
 	return (fill_matrx(matrix, filename, rows, cols));

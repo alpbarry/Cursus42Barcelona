@@ -25,16 +25,15 @@ MLXLIB	=	mlx_linux/libmlx.a -lXext -lX11 -lm -lz
 
 all:		dir ${NAME}
 
-${NAME}:	${OBJS} dir
+${NAME}:	${OBJS}
 				@echo "Compiling ${NAME}..."
 				@${CC} ${CFLAGS} ${OBJS} ${LIBFT} $(FT_PRINTF) ${MLXLIB} -o ${NAME}
 dir:
-				mkdir -p objects
+				@mkdir -p objects
 				@make -s -C libft
 				@make -s -C ft_printf
 				@make -s -C mlx_linux
 
-# Ajuste para compilar los archivos en objects/
 objects/%.o: sources/%.c Makefile
 				@echo "Compiling $<..."
 				${CC} ${CFLAGS} -c $< -MMD -o $@
@@ -55,4 +54,3 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		clean fclean re all
-

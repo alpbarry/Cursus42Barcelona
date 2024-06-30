@@ -6,7 +6,7 @@
 /*   By: vinograd <vinograd@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/03 15:13:25 by vinograd          #+#    #+#             */
-/*   Updated: 2024/06/27 22:44:43 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/06/30 11:42:26 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,38 +43,10 @@ int	close_window(t_fdf **param)
 	mlx_destroy_image((*param)->mlx_ptr, (*param)->img_ptr);
 	mlx_destroy_window((*param)->mlx_ptr, (*param)->win_ptr);
 	mlx_destroy_display((*param)->mlx_ptr);
-	free(*param);
+	free((*param)->mlx_ptr);
 	free_matrix(param, (*param)->rows);
 	exit(0);
 }
-
-/*int close_window(t_fdf **param)
-{
-    if (param && *param)
-    {
-        if ((*param)->mlx_ptr && (*param)->img_ptr)
-        {
-            mlx_destroy_image((*param)->mlx_ptr, (*param)->img_ptr);
-            (*param)->img_ptr = NULL;
-		}
-        if ((*param)->mlx_ptr && (*param)->win_ptr)
-        {
-            mlx_destroy_window((*param)->mlx_ptr, (*param)->win_ptr);
-            (*param)->win_ptr = NULL;
-        }
-        if ((*param)->mlx_ptr)
-        {
-            mlx_destroy_display((*param)->mlx_ptr);
-            //free((*param)->mlx_ptr);
-            (*param)->mlx_ptr = NULL;
-        }
-        free_matrix(param, (*param)->rows);
-        free(*param);
-        *param = NULL;
-	}
-    exit(0);
-    return (0);
-}*/
 
 int	main(int ac, char **av)
 {
@@ -87,9 +59,7 @@ int	main(int ac, char **av)
 		ft_error("Failed to read file");
 	set_default(matrix[0]);
 	draw_matrix(matrix, (*matrix)->rows, (*matrix)->cols);
-	ft_printf("close window\n");
 	mlx_hook((*matrix)->win_ptr, 17, 0, close_window, matrix);
-	ft_printf("main : despues de hook\n");
 	mlx_key_hook((*matrix)->win_ptr, deal_key, matrix);
 	mlx_loop((*matrix)->mlx_ptr);
 }
