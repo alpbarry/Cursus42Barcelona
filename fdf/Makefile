@@ -1,56 +1,114 @@
-SRCS	= main.c \
-			change_window_size.c \
-			deal_key.c \
-			draw.c \
-			utils2.c \
-			keys.c \
-			print_menu.c \
-			read_map.c \
-			set_param.c \
-			utils.c
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/07/02 14:10:47 by alphbarr          #+#    #+#              #
+#    Updated: 2024/07/02 16:21:50 by alphbarr         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-OBJS	= ${addprefix objects/, ${SRCS:.c=.o}}
+#<--------------------------------->COLORS<----------------------------------->#
+DEF_COLOR	=	\033[1;99m
+WHITE_BOLD	=	\033[1m
+BLACK		=	\033[1;90m
+RED			=	\033[1;91m
+GREEN		=	\033[1;92m
+YELLOW		=	\033[1;93m
+BLUE		=	\033[1;94m
+PINK		=	\033[1;95m
+CIAN		=	\033[1;96m
 
-NAME	= fdf
+#<--------------------------------->NAME<------------------------------------>#
+NAME		=	FdF
 
-RM		= rm -rf
+#<-------------------------------->LIBRARY<---------------------------------->#
+LIBRARY		= libs/
+LIB_A		=	libs/libft/libft.a libs/ft_printf/libftprintf.a
+MLXLIB		=	libs/mlx_linux/libmlx.a -lXext -lX11 -lm -lz
+LIB_SEARCH	=	-L./libs/libft -L./libs/ft_printf -L./libs/mlx_linux/ \
+				-lft -lftprintf -lmlx -lm
 
-CC = cc
-CFLAGS	= -Wall -Wextra -Werror
+#<-------------------------------->HEADERS<---------------------------------->#
+HEADER		=	./includes/
+PRINTF_H	=	./ft_printf/
+LIBFT_H		=	./libft/sources/
+MLX_H		=	./mlx_linux/
 
-LIBFT	= libft/libft.a
-FT_PRINTF = ft_printf/libftprintf.a
+#<--------------------------------->DIRS<------------------------------------>#
+SRC_DIR		=	sources/
+OBJ_DIR		=	objects/
 
-MLXLIB	=	mlx_linux/libmlx.a -lXext -lX11 -lm -lz
+#<--------------------------------->FILES<---------------------------------->#
+FILES		=	main.c \
+				change_window_size.c \
+				deal_key.c \
+				draw.c \
+				utils2.c \
+				keys.c \
+				print_menu.c \
+				read_map.c \
+				set_param.c \
+				utils.c
 
-all:		dir ${NAME}
+#<--------------------------------->SRCS<----------------------------------->#
+SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 
-${NAME}:	${OBJS}
-				@echo "Compiling ${NAME}..."
-				@${CC} ${CFLAGS} ${OBJS} ${LIBFT} $(FT_PRINTF) ${MLXLIB} -o ${NAME}
-dir:
-				@mkdir -p objects
-				@make -s -C libft
-				@make -s -C ft_printf
-				@make -s -C mlx_linux
+#<----------------------------->OBJS && DEPS<------------------------------->#
+OBJS		=	$(addprefix $(OBJ_DIR), $(subst .c,.o,$(SRCS)))
+DEPS		=	$(subst .o,.d,$(OBJS))
 
-objects/%.o: sources/%.c Makefile
-				@echo "Compiling $<..."
-				${CC} ${CFLAGS} -c $< -MMD -o $@
--include $(OBJS:.o=.d)
+#<-------------------------------->COMANDS<---------------------------------->#
+INCLUDE		=	-I$(HEADER) -I$(PRINTF_H) -I$(LIBFT_H) -I$(MLX_H)
+RM			=	rm -rf
+MKD			=	mkdir -p
+MK			=	Makefile
+CFLAGS		=	-Wall -Wextra -Werror -O3# -fsanitize=address
+MKFLAGS		=	--no-print-directory
 
-clean:
-				make clean -C libft/
-				make clean -C ft_printf/
-				make clean -C mlx_linux
-				${RM} objects/
+#<--------------------------------->RULES<----------------------------------->#
+$(OBJ_DIR)%.o	:	%.c $(LIB_A) $(MK)
+	@$(MKD) $(dir $@)
+	@printf "$(PINK)       \rCompiling: $(YELLOW)$(notdir $<)...$(DEF_COLOR)       \r"
+	@$(CC) -MT $@ $(CFLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
 
-fclean:		clean
-				# make clean -C mlx_linux
-				make fclean -C libft
-				make fclean -C ft_printf
-				${RM} ${NAME}
+	all				:
+	@$(MAKE) $(MKFLAGS) -C libft/
+	@$(MAKE) $(MKFLAGS) -C ft_printf/
+	@$(MAKE) $(MKFLAGS) -C mlx_linux/
+	@$(MAKE) $(MKFLAGS) $(NAME)
 
-re:			fclean all
 
-.PHONY:		clean fclean re all
+$(NAME)			:	$(OBJS)
+	@$(CC) $(CFLAGS) $(OBJS) $(LIB_SEARCH) $(MLXLIB) -o $@
+	@echo "\n$(GREEN)FdF has been compiled$(DEF_COLOR)"
+
+clean			:
+	@$(MAKE) $(MKFLAGS) clean -C libft/
+	@$(MAKE) $(MKFLAGS) clean -C ft_printf/
+	@$(MAKE) $(MKFLAGS) clean -C mlx_linux/
+	@$(RM) $(OBJ_DIR)
+	@echo ""
+	@echo "$(RED)All OBJS && DEPS has been removed$(DEF_COLOR)"
+	@echo ""
+
+fclean			:
+	@$(MAKE) $(MKFLAGS) clean
+	@$(MAKE) $(MKFLAGS) fclean -C libft/
+	@$(MAKE) $(MKFLAGS) fclean -C ft_printf/
+	# @$(MAKE) $(MKFLAGS) fclean -C mlx_linux/
+	@$(RM) $(NAME)
+	@echo ""
+	@echo "$(RED)Program has been removed$(DEF_COLOR)"
+
+re				:
+	@$(MAKE) $(MKFLAGS) fclean
+	@$(MAKE) $(MKFLAGS) all
+	@echo ""
+	@echo "$(CIAN)FdF has been recompiled$(DEF_COLOR)"
+
+.PHONY			: all clean fclean re
+
+-include		$(DEPS)

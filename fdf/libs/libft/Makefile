@@ -5,40 +5,53 @@
 #                                                     +:+ +:+         +:+      #
 #    By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/22 10:22:50 by alphbarr          #+#    #+#              #
-#    Updated: 2024/03/08 12:26:00 by alphbarr         ###   ########.fr        #
+#    Created: 2024/04/16 12:29:05 by alphbarr          #+#    #+#              #
+#    Updated: 2024/07/02 16:18:35 by alphbarr         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
-
 AR = ar rcs
 RM = rm -rf
 
 CC = gcc
-CCFLAGS = -g -Wall -Wextra -Werror
+CCFLAGS = -g -Wall -Wextra -Werror -I../includes
 
+SOURCES_DIRECTORY = ./sources/
 
-NAME = libftprintf.a
+NAME = libft.a
 
-SRC = ft_basics.c ft_hexa.c ft_printf.c ft_puntero.c
+SRC_LIST = $(wildcard $(SOURCES_DIRECTORY)*.c)
 
-OBJ = $(SRC:.c=.o)
+SOURCES = $(addprefix $(SOURCES_DIRECTORY), $(SRC_LIST))
+OBJDIR = objects/
+OBJS_LIST = $(patsubst %.c, %.o, $(notdir $(SRC_LIST)))
+OBJS = $(addprefix $(OBJDIR), $(OBJS_LIST))
 
-LIB = ft_printf.h
+LIB = src/libft.h\
+	src/get_next_line.h
+
+# COLORS
+
+GREEN = \033[0;32m
+RED = \033[0;31m
+RESET = \033[0m
+
+.PHONY: all clean fclean re
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(LIB)
-	@$(AR) $@ $(OBJ)
+$(NAME): $(OBJS) $(LIB)
+	@$(AR) $@ $(OBJS)
 	@echo "Library $@ Done :)"
 
-%.o: %.c Makefile $(LIB)
-	@echo "Compiling... $<..."
+$(OBJDIR)%.o: $(SOURCES_DIRECTORY)%.c Makefile $(LIB)
+	@mkdir -p $(@D)
+	@echo "$(GREEN) Compiling... $<..."
 	@$(CC) $(CCFLAGS) -c $< -o $@
-	@echo "$@ created!"
+	@echo "$(RED) $@ created!"
 
 clean:
 	@echo "Remove *.o"
-	@${RM} ${OBJ}
+	@${RM} -r $(OBJDIR)
 	@echo "Done !"
 
 fclean: clean
@@ -47,5 +60,3 @@ fclean: clean
 	@echo "Done !"
 
 re: fclean all
-
-.PHONY: all clean re fclean
