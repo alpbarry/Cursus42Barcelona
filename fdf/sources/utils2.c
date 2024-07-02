@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/30 22:20:39 by Nik               #+#    #+#             */
-/*   Updated: 2024/06/30 13:46:09 by alphbarr         ###   ########.fr       */
+/*   Created: 2024/07/01 19:25:58 by alphbarr          #+#    #+#             */
+/*   Updated: 2024/07/02 14:04:58 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,17 @@ void	check_file_status(int fd)
 		close(fd);
 		ft_error("attempted to read a directory");
 	}
+}
+
+int	extension_fdf(char *filename)
+{
+	char	*d;
+
+	d = ft_strrchr(filename, '.');
+	if (!d || d == filename)
+		return (0);
+	if (ft_strcmp(d, ".fdf") == 0)
+		return (1);
+	else
+		return (0);
 }

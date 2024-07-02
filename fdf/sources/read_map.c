@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   read_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Nik <Nik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/27 15:19:57 by Nik               #+#    #+#             */
-/*   Updated: 2024/06/30 13:53:13 by alphbarr         ###   ########.fr       */
+/*   Created: 2024/07/01 19:25:21 by alphbarr          #+#    #+#             */
+/*   Updated: 2024/07/01 21:03:02 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include <sys/stat.h>
 
 void	get_dimensions(int fd, int *rows, int *cols)
 {
@@ -132,6 +131,8 @@ t_fdf	**read_file(char *filename)
 	int		cols;
 	t_fdf	**matrix;
 
+	if (!extension_fdf(filename))
+		ft_error("Extension file is not .fdf");
 	rows = 0;
 	cols = 0;
 	fd = open(filename, O_RDONLY, 0);

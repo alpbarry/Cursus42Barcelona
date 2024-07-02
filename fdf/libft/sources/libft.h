@@ -6,7 +6,7 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 18:08:16 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/04/18 18:47:39 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:21:11 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

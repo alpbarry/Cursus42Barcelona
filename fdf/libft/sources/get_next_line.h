@@ -6,13 +6,14 @@
 /*   By: alphbarr <alphbarr@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 20:07:47 by alphbarr          #+#    #+#             */
-/*   Updated: 2024/05/07 16:21:37 by alphbarr         ###   ########.fr       */
+/*   Updated: 2024/07/02 13:27:20 by alphbarr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include "libft.h"
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
