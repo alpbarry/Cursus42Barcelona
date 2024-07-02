@@ -6,7 +6,7 @@
 #    By: alphbarr <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/02 14:10:47 by alphbarr          #+#    #+#              #
-#    Updated: 2024/07/02 16:21:50 by alphbarr         ###   ########.fr        #
+#    Updated: 2024/07/02 18:24:23 by alpha            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,9 @@ LIB_SEARCH	=	-L./libs/libft -L./libs/ft_printf -L./libs/mlx_linux/ \
 
 #<-------------------------------->HEADERS<---------------------------------->#
 HEADER		=	./includes/
-PRINTF_H	=	./ft_printf/
-LIBFT_H		=	./libft/sources/
-MLX_H		=	./mlx_linux/
+PRINTF_H	=	./libs/ft_printf/
+LIBFT_H		=	./libs/libft/sources/
+MLX_H		=	./libs/	mlx_linux/
 
 #<--------------------------------->DIRS<------------------------------------>#
 SRC_DIR		=	sources/
@@ -58,7 +58,7 @@ SRCS		=	$(addprefix $(SRC_DIR), $(addsuffix .c, $(FILES)))
 
 #<----------------------------->OBJS && DEPS<------------------------------->#
 OBJS		=	$(addprefix $(OBJ_DIR), $(subst .c,.o,$(SRCS)))
-DEPS		=	$(subst .o,.d,$(OBJS))
+DEPS		=	$(subst .o,.d,$(OBJS))	
 
 #<-------------------------------->COMANDS<---------------------------------->#
 INCLUDE		=	-I$(HEADER) -I$(PRINTF_H) -I$(LIBFT_H) -I$(MLX_H)
@@ -75,9 +75,7 @@ $(OBJ_DIR)%.o	:	%.c $(LIB_A) $(MK)
 	@$(CC) -MT $@ $(CFLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
 
 	all				:
-	@$(MAKE) $(MKFLAGS) -C libft/
-	@$(MAKE) $(MKFLAGS) -C ft_printf/
-	@$(MAKE) $(MKFLAGS) -C mlx_linux/
+	@$(MAKE) $(MKFLAGS) -C $(LIBRARY)
 	@$(MAKE) $(MKFLAGS) $(NAME)
 
 
@@ -86,9 +84,7 @@ $(NAME)			:	$(OBJS)
 	@echo "\n$(GREEN)FdF has been compiled$(DEF_COLOR)"
 
 clean			:
-	@$(MAKE) $(MKFLAGS) clean -C libft/
-	@$(MAKE) $(MKFLAGS) clean -C ft_printf/
-	@$(MAKE) $(MKFLAGS) clean -C mlx_linux/
+	@$(MAKE) $(MKFLAGS) clean -C $(LIBRARY)
 	@$(RM) $(OBJ_DIR)
 	@echo ""
 	@echo "$(RED)All OBJS && DEPS has been removed$(DEF_COLOR)"
@@ -96,9 +92,7 @@ clean			:
 
 fclean			:
 	@$(MAKE) $(MKFLAGS) clean
-	@$(MAKE) $(MKFLAGS) fclean -C libft/
-	@$(MAKE) $(MKFLAGS) fclean -C ft_printf/
-	# @$(MAKE) $(MKFLAGS) fclean -C mlx_linux/
+	@$(MAKE) $(MKFLAGS) fclean -C $(LIBRARY)
 	@$(RM) $(NAME)
 	@echo ""
 	@echo "$(RED)Program has been removed$(DEF_COLOR)"
